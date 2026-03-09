@@ -3,6 +3,9 @@ import 'package:blog_app/controller/home_user_profile_notifier.dart';
 import 'package:blog_app/controller/notification_notifier.dart';
 import 'package:blog_app/controller/post_comment_notifier.dart';
 import 'package:blog_app/controller/profile_settings_notifier.dart';
+import 'package:blog_app/features/global_users/presentation/views/followers_view.dart';
+import 'package:blog_app/features/global_users/presentation/views/messages_view.dart';
+import 'package:blog_app/features/profile/presentation/views/profile_settings_view.dart';
 import 'package:blog_app/firebase_options.dart';
 import 'package:blog_app/features/auth/data/repositories/firebase_auth_repository.dart';
 import 'package:blog_app/features/auth/domain/repositories/auth_repository.dart';
@@ -17,19 +20,24 @@ import 'package:blog_app/features/home/domain/repositories/home_repository.dart'
 import 'package:blog_app/features/home/domain/usecases/home_use_cases.dart';
 import 'package:blog_app/features/home/presentation/controllers/home_notifier.dart';
 import 'package:blog_app/features/home/presentation/views/home_view.dart';
+import 'package:blog_app/features/global_users/data/repositories/firebase_global_users_repository.dart';
+import 'package:blog_app/features/global_users/domain/repositories/global_users_repository.dart';
+import 'package:blog_app/features/global_users/domain/usecases/global_users_use_cases.dart';
+import 'package:blog_app/features/global_users/presentation/controllers/global_users_notifier.dart';
+import 'package:blog_app/features/global_users/presentation/views/chat_with_sender_view.dart';
+import 'package:blog_app/features/profile/data/repositories/firebase_profile_repository.dart';
+import 'package:blog_app/features/profile/domain/repositories/profile_repository.dart';
+import 'package:blog_app/features/profile/domain/usecases/profile_use_cases.dart';
+import 'package:blog_app/features/profile/presentation/controllers/profile_notifier.dart';
+import 'package:blog_app/features/profile/presentation/views/profile_view.dart';
 import 'package:blog_app/utils/constants/app_routes.dart';
 import 'package:blog_app/views/chat/global_chat_view.dart';
 import 'package:blog_app/views/notifications/user_notification.dart';
 import 'package:blog_app/views/notifications/user_post_comment_notification.dart';
-import 'package:blog_app/views/profile_view.dart';
-import 'package:blog_app/views/user_profile_settings/profile_settings.dart';
 import 'package:blog_app/views/user_posts/create_post.dart';
 import 'package:blog_app/views/user_posts/home_user_view.dart';
 import 'package:blog_app/views/user_posts/update_post.dart';
 import 'package:blog_app/views/user_profile_settings/profile_update.dart';
-import 'package:blog_app/views/user_profile_settings/views/chat_with_sender_view.dart';
-import 'package:blog_app/views/user_profile_settings/views/followers_view.dart';
-import 'package:blog_app/views/user_profile_settings/views/messages_view.dart';
 import 'package:cloudinary_flutter/cloudinary_context.dart';
 import 'package:cloudinary_url_gen/cloudinary.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -54,6 +62,28 @@ void main() async {
         ChangeNotifierProvider(create: (context) => NotificationNotifier()),
         ChangeNotifierProvider(create: (context) => HomePostNotifier()),
         ChangeNotifierProvider(create: (context) => AuthErrorNotifier()),
+        Provider<GlobalUsersRepository>(
+          create: (context) => FirebaseGlobalUsersRepository(),
+        ),
+        ProxyProvider<GlobalUsersRepository, GlobalUsersUseCases>(
+          update: (context, globalUsersRepository, previous) =>
+              GlobalUsersUseCases(globalUsersRepository),
+        ),
+        ProxyProvider<GlobalUsersUseCases, GlobalUsersNotifier>(
+          update: (context, globalUsersUseCases, previous) =>
+              GlobalUsersNotifier(globalUsersUseCases),
+        ),
+        Provider<ProfileRepository>(
+          create: (context) => FirebaseProfileRepository(),
+        ),
+        ProxyProvider<ProfileRepository, ProfileUseCases>(
+          update: (context, profileRepository, previous) =>
+              ProfileUseCases(profileRepository),
+        ),
+        ProxyProvider<ProfileUseCases, ProfileNotifier>(
+          update: (context, profileUseCases, previous) =>
+              ProfileNotifier(profileUseCases),
+        ),
         Provider<HomeRepository>(
           create: (context) => FirebaseHomeRepository(),
         ),
