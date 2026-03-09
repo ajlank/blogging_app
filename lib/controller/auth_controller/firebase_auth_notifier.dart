@@ -12,7 +12,7 @@ class FirebaseAuthNotifier {
 
   const FirebaseAuthNotifier(this._auth);
 
-  Future<void> loginUser(
+  Future<bool> loginUser(
     String email,
     String pass,
     BuildContext context,
@@ -27,21 +27,27 @@ class FirebaseAuthNotifier {
         context.read<NotificationNotifier>().setNotifRecieverId(
           userCred.user!.uid,
         );
+        return true;
       }
+      return false;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        return await showErrorDialog('Error', 'User not found', context);
+        await showErrorDialog('Error', 'User not found', context);
+        return false;
       } else if (e.code == 'wrong-password') {
         context.read<AuthErrorNotifier>().setPasswordError('Wrong password');
+        return false;
       } else {
-        return await showErrorDialog('Unknown error occurred', e.code, context);
+        await showErrorDialog('Unknown error occurred', e.code, context);
+        return false;
       }
     } catch (e) {
-      return await showErrorDialog(
+      await showErrorDialog(
         'Unknown error occured',
         e.toString(),
         context,
       );
+      return false;
     }
   }
 

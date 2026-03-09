@@ -96,14 +96,22 @@ class _LoginViewState extends State<LoginView> {
                   child: TextButton(
                     onPressed: () async {
                       showLoadingScreen(context);
+                      bool didLogin = false;
                       try {
-                        await context.read<FirebaseAuthNotifier>().loginUser(
+                        didLogin = await context
+                            .read<FirebaseAuthNotifier>()
+                            .loginUser(
                           _emailController.text.trim(),
                           _passwordController.text.trim(),
                           context,
                         );
                       } finally {
-                        Navigator.of(context).pop();
+                        if (mounted) {
+                          Navigator.of(context).pop();
+                        }
+                      }
+                      if (!mounted || !didLogin) {
+                        return;
                       }
                       Navigator.of(
                         context,

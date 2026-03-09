@@ -20,34 +20,45 @@ class HomeView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser == null) {
+      return const Scaffold(
+        body: Center(child: Text('Please login again')),
+      );
+    }
+    final currentUserId = currentUser.uid;
+
     final future = useMemoized(
       () => FirebaseFirestore.instance
           .collection('profilesettings')
-          .where('userId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+          .where('userId', isEqualTo: currentUserId)
           .snapshots(),
+      [currentUserId],
     );
 
     final future2 = useMemoized(
       () => FirebaseFirestore.instance
           .collection('postReactionCommentNotification')
-          .where(
-            'notifRecieverId',
-            isEqualTo: FirebaseAuth.instance.currentUser!.uid,
-          )
+          .where('notifRecieverId', isEqualTo: currentUserId)
           .snapshots(),
+      [currentUserId],
     );
     final future3 = useMemoized(
       () => FirebaseFirestore.instance.collection('globalChatroom').snapshots(),
     );
 
     final result = useStream(future);
-    final followCount = result.data!.docs[0].data()['followCount'];
+    final profileDocs = result.data?.docs;
+    final followCount =
+        (profileDocs != null && profileDocs.isNotEmpty)
+            ? (profileDocs.first.data()['followCount'] ?? 0)
+            : 0;
 
     final result2 = useStream(future2);
-    final prcCount = result2.data!.docs.length;
+    final prcCount = result2.data?.docs.length ?? 0;
 
     final result3 = useStream(future3);
-    final globalChatCount = result3.data!.docs.length;
+    final globalChatCount = result3.data?.docs.length ?? 0;
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 225, 227, 230),
       appBar: AppBar(
@@ -169,8 +180,7 @@ class HomeView extends HookWidget {
                               ),
                             ],
                           ),
-                          (postData['userId'] ==
-                                  FirebaseAuth.instance.currentUser!.uid)
+                          (postData['userId'] == currentUserId)
                               ? PopupMenuButton<MenuAction>(
                                   onSelected: (value) async {
                                     switch (value) {
@@ -250,21 +260,19 @@ class HomeView extends HookWidget {
                         children: [
                           !(((postData["likedBy"] ?? []) as List<dynamic>)
                                       .contains(
-                                        FirebaseAuth.instance.currentUser!.uid,
+                                        currentUserId,
                                       ) &&
                                   (((postData["isLiked"] ?? [])
                                           as List<dynamic>)
                                       .contains(
-                                        FirebaseAuth.instance.currentUser!.uid,
+                                        currentUserId,
                                       )))
                               ? GestureDetector(
                                   onTap: () async {
-                                    final currentUser =
-                                        FirebaseAuth.instance.currentUser!.uid;
                                     final isThatUseWhoLiked =
                                         ((postData["likedBy"] ?? [])
                                                 as List<dynamic>)
-                                            .contains(currentUser);
+                                            .contains(currentUserId);
 
                                     if (!isThatUseWhoLiked ||
                                         isThatUseWhoLiked) {
@@ -273,16 +281,10 @@ class HomeView extends HookWidget {
                                           .doc(postData["documentId"])
                                           .update({
                                             'likedBy': FieldValue.arrayUnion([
-                                              FirebaseAuth
-                                                  .instance
-                                                  .currentUser!
-                                                  .uid,
+                                              currentUserId,
                                             ]),
                                             'isLiked': FieldValue.arrayUnion([
-                                              FirebaseAuth
-                                                  .instance
-                                                  .currentUser!
-                                                  .uid,
+                                              currentUserId,
                                             ]),
                                             'likeCount': FieldValue.increment(
                                               1,
@@ -293,10 +295,7 @@ class HomeView extends HookWidget {
                                             'postReactionCommentNotification',
                                           )
                                           .add({
-                                            "notifSenderId": FirebaseAuth
-                                                .instance
-                                                .currentUser!
-                                                .uid,
+                                            "notifSenderId": currentUserId,
                                             "notifRecieverId":
                                                 postData['userId'],
                                             "notifSenderImg":
@@ -318,12 +317,10 @@ class HomeView extends HookWidget {
                                 )
                               : GestureDetector(
                                   onTap: () async {
-                                    final currentUser =
-                                        FirebaseAuth.instance.currentUser!.uid;
                                     final isThatUseWhoLiked =
                                         ((postData["likedBy"] ?? [])
                                                 as List<dynamic>)
-                                            .contains(currentUser);
+                                            .contains(currentUserId);
 
                                     if (isThatUseWhoLiked) {
                                       await FirebaseFirestore.instance
@@ -334,10 +331,7 @@ class HomeView extends HookWidget {
                                               -1,
                                             ),
                                             'isLiked': FieldValue.arrayRemove([
-                                              FirebaseAuth
-                                                  .instance
-                                                  .currentUser!
-                                                  .uid,
+                                              currentUserId,
                                             ]),
                                           });
                                     }
@@ -470,13 +464,17 @@ void showCommentsSheet(BuildContext context, String postId) {
                     icon: const Icon(Icons.send, color: Colors.blue),
                     onPressed: () async {
                       final text = commentController.text;
+                      final currentUser = FirebaseAuth.instance.currentUser;
+                      if (currentUser == null) {
+                        return;
+                      }
                       if (text.isNotEmpty) {
                         await FirebaseFirestore.instance
                             .collection('posts')
                             .doc(postId)
                             .collection('comments')
                             .add({
-                              'userId': FirebaseAuth.instance.currentUser!.uid,
+                              'userId': currentUser.uid,
                               'userName': Provider.of<ProfileSettingsNotifier>(
                                 context,
                                 listen: false,
