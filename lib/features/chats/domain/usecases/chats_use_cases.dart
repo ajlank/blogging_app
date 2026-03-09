@@ -6,6 +6,10 @@ class ChatsUseCases {
 
   const ChatsUseCases(this._chatsRepository);
 
+  Stream<QuerySnapshot<Map<String, dynamic>>> watchLegacyChatMessages() {
+    return _chatsRepository.watchLegacyChatMessages();
+  }
+
   Stream<QuerySnapshot<Map<String, dynamic>>> watchGlobalChatMessages() {
     return _chatsRepository.watchGlobalChatMessages();
   }
@@ -28,6 +32,13 @@ class ChatsUseCases {
       imageUrl: imageUrl,
       message: message,
     );
+  }
+
+  Future<void> sendLegacyChatMessage({
+    required String text,
+    required String sender,
+  }) {
+    return _chatsRepository.sendLegacyChatMessage(text: text, sender: sender);
   }
 
   Future<void> sendMessage({

@@ -1,4 +1,4 @@
-import 'package:blog_app/customs/custom_clipper.dart';
+import 'package:blog_app/core/utils/customs/custom_clipper.dart';
 import 'package:flutter/material.dart';
 
 class HomeUserCoverSliverAppBar extends StatelessWidget {

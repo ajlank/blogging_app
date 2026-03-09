@@ -1,7 +1,7 @@
 import 'package:blog_app/controller/auth_controller/auth_error_notifier.dart';
 import 'package:blog_app/controller/notification_notifier.dart';
-import 'package:blog_app/generics/dialog.dart';
-import 'package:blog_app/utils/constants/app_routes.dart';
+import 'package:blog_app/core/generics/dialog.dart';
+import 'package:blog_app/core/utils/constants/app_routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 

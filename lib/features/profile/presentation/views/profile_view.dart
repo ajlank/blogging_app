@@ -7,7 +7,7 @@ import 'package:blog_app/features/profile/presentation/widgets/profile_cover_sli
 import 'package:blog_app/features/profile/presentation/widgets/profile_header_section.dart';
 import 'package:blog_app/features/profile/presentation/widgets/profile_member_info_section.dart';
 import 'package:blog_app/features/profile/presentation/widgets/profile_stats_section.dart';
-import 'package:blog_app/utils/constants/app_routes.dart';
+import 'package:blog_app/core/utils/constants/app_routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

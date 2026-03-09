@@ -21,6 +21,7 @@ export 'package:blog_app/features/chats/data/repositories/firebase_chats_reposit
 export 'package:blog_app/features/chats/domain/repositories/chats_repository.dart';
 export 'package:blog_app/features/chats/domain/usecases/chats_use_cases.dart';
 export 'package:blog_app/features/chats/presentation/controllers/chats_notifier.dart';
+export 'package:blog_app/features/chats/presentation/views/chat_screen_view.dart';
 export 'package:blog_app/features/chats/presentation/views/global_chat_view.dart';
 export 'package:blog_app/features/home/data/repositories/firebase_home_repository.dart';
 export 'package:blog_app/features/home/domain/repositories/home_repository.dart';
@@ -50,7 +51,7 @@ export 'package:blog_app/features/profile/presentation/views/profile_settings_vi
 export 'package:blog_app/features/profile/presentation/views/profile_update_view.dart'
     hide selectImage;
 export 'package:blog_app/features/profile/presentation/views/profile_view.dart';
-export 'package:blog_app/utils/constants/app_routes.dart';
+export 'package:blog_app/core/utils/constants/app_routes.dart';
 export 'package:cloudinary_flutter/cloudinary_context.dart';
 export 'package:cloudinary_url_gen/cloudinary.dart';
 export 'package:firebase_auth/firebase_auth.dart';

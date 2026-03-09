@@ -3,7 +3,7 @@ import 'package:blog_app/features/profile/presentation/controllers/profile_notif
 import 'package:blog_app/features/profile/presentation/widgets/profile_image_picker_box.dart';
 import 'package:blog_app/features/profile/presentation/widgets/profile_settings_form_fields.dart';
 import 'package:blog_app/features/profile/presentation/widgets/profile_settings_save_button.dart';
-import 'package:blog_app/utils/constants/app_routes.dart';
+import 'package:blog_app/core/utils/constants/app_routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';

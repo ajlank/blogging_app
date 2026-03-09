@@ -1,7 +1,7 @@
 import 'package:blog_app/base/styles/text_styles.dart';
 import 'package:blog_app/features/auth/presentation/controllers/auth_notifier.dart';
 import 'package:blog_app/features/auth/presentation/notifiers/auth_error_notifier.dart';
-import 'package:blog_app/utils/constants/app_routes.dart';
+import 'package:blog_app/core/utils/constants/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

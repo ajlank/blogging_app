@@ -8,6 +8,14 @@ class FirebaseChatsRepository implements ChatsRepository {
     : _firestore = firestore ?? FirebaseFirestore.instance;
 
   @override
+  Stream<QuerySnapshot<Map<String, dynamic>>> watchLegacyChatMessages() {
+    return _firestore
+        .collection('messages')
+        .orderBy('dt', descending: true)
+        .snapshots();
+  }
+
+  @override
   Stream<QuerySnapshot<Map<String, dynamic>>> watchGlobalChatMessages() {
     return _firestore
         .collection('globalChatroom')
@@ -43,6 +51,18 @@ class FirebaseChatsRepository implements ChatsRepository {
     };
 
     return _firestore.collection('globalChatroom').add(messages);
+  }
+
+  @override
+  Future<void> sendLegacyChatMessage({
+    required String text,
+    required String sender,
+  }) {
+    return _firestore.collection('messages').add({
+      'text': text,
+      'sender': sender,
+      'dt': DateTime.now(),
+    });
   }
 
   @override

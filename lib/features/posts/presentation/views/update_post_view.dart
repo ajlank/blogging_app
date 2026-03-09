@@ -4,7 +4,7 @@ import 'package:blog_app/features/posts/presentation/controllers/posts_notifier.
 import 'package:blog_app/features/posts/presentation/widgets/create_post_image_picker.dart';
 import 'package:blog_app/features/posts/presentation/widgets/create_post_text_field.dart';
 import 'package:blog_app/features/posts/presentation/widgets/update_post_button.dart';
-import 'package:blog_app/utils/constants/app_routes.dart';
+import 'package:blog_app/core/utils/constants/app_routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';

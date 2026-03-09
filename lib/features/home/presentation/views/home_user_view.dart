@@ -9,7 +9,7 @@ import 'package:blog_app/features/home/presentation/widgets/home_user_avatar_sec
 import 'package:blog_app/features/home/presentation/widgets/home_user_cover_sliver_app_bar.dart';
 import 'package:blog_app/features/home/presentation/widgets/home_user_member_info_section.dart';
 import 'package:blog_app/features/home/presentation/widgets/home_user_stats_section.dart';
-import 'package:blog_app/utils/constants/app_routes.dart';
+import 'package:blog_app/core/utils/constants/app_routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
