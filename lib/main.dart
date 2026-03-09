@@ -1,7 +1,7 @@
 
 import 'package:blog_app/features/posts/presentation/views/create_post_view.dart';
 import 'package:blog_app/features/profile/presentation/views/profile_settings_view.dart';
-import 'package:blog_app/views/user_profile_settings/profile_update.dart';
+import 'package:blog_app/features/profile/presentation/views/profile_update_view.dart';
 import 'package:flutter/material.dart';
 
 import 'blogging.dart';

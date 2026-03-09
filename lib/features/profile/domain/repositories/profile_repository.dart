@@ -17,4 +17,13 @@ abstract class ProfileRepository {
     File? coverFile,
     File? profileFile,
   });
+
+  Future<void> updateProfileSettings({
+    required String docId,
+    required String userId,
+    required String name,
+    required String about,
+    File? coverFile,
+    File? profileFile,
+  });
 }

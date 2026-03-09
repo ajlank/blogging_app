@@ -36,4 +36,22 @@ class ProfileUseCases {
       profileFile: profileFile,
     );
   }
+
+  Future<void> updateProfileSettings({
+    required String docId,
+    required String userId,
+    required String name,
+    required String about,
+    File? coverFile,
+    File? profileFile,
+  }) {
+    return _profileRepository.updateProfileSettings(
+      docId: docId,
+      userId: userId,
+      name: name,
+      about: about,
+      coverFile: coverFile,
+      profileFile: profileFile,
+    );
+  }
 }

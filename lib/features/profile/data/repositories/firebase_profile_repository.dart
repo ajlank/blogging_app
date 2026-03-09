@@ -115,4 +115,42 @@ class FirebaseProfileRepository implements ProfileRepository {
       print(e);
     }
   }
+
+  @override
+  Future<void> updateProfileSettings({
+    required String docId,
+    required String userId,
+    required String name,
+    required String about,
+    File? coverFile,
+    File? profileFile,
+  }) async {
+    try {
+      String? coverImageUrl;
+      String? profileImageUrl;
+
+      if (coverFile != null) {
+        coverImageUrl = await _uploadToCloudinary(coverFile);
+      }
+      if (profileFile != null) {
+        profileImageUrl = await _uploadToCloudinary(profileFile);
+      }
+
+      await _firestore.collection("profilesettings").doc(docId).update({
+        "userId": userId,
+        "name": name.trim(),
+        "about": about.trim(),
+        "postedAt": FieldValue.serverTimestamp(),
+        "profileImageUrl": profileImageUrl ?? "",
+        "coverImageUrl": coverImageUrl ?? "",
+      });
+
+      await _firestore.collection('posts').doc(userId).update({
+        "userImageUrl": profileImageUrl,
+        "userName": name.trim(),
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
 }

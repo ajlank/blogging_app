@@ -45,6 +45,10 @@ export 'package:blog_app/features/profile/data/repositories/firebase_profile_rep
 export 'package:blog_app/features/profile/domain/repositories/profile_repository.dart';
 export 'package:blog_app/features/profile/domain/usecases/profile_use_cases.dart';
 export 'package:blog_app/features/profile/presentation/controllers/profile_notifier.dart';
+export 'package:blog_app/features/profile/presentation/views/profile_settings_view.dart'
+    hide selectImage;
+export 'package:blog_app/features/profile/presentation/views/profile_update_view.dart'
+    hide selectImage;
 export 'package:blog_app/features/profile/presentation/views/profile_view.dart';
 export 'package:blog_app/utils/constants/app_routes.dart';
 export 'package:cloudinary_flutter/cloudinary_context.dart';
