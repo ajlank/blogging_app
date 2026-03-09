@@ -1,0 +1,46 @@
+import 'package:blog_app/features/notifications/presentation/widgets/user_notification_tile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
+class UserNotificationList extends StatelessWidget {
+  final Stream<QuerySnapshot<Map<String, dynamic>>> stream;
+  final String currentUserId;
+
+  const UserNotificationList({
+    super.key,
+    required this.stream,
+    required this.currentUserId,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: stream,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
+          return Center(child: Text('No Notifications'));
+        }
+        if (snapshot.hasData) {
+          final doc = snapshot.data!.docs;
+          return ListView.builder(
+            itemCount: doc.length,
+            itemBuilder: (context, index) {
+              final notif = doc[index].data();
+              if (notif['notifRecieverId'] != currentUserId) {
+                return SizedBox.shrink();
+              }
+              return UserNotificationTile(
+                senderImage: notif['notifSenderImg'],
+                senderName: notif['notifSenderName'].toString(),
+              );
+            },
+          );
+        }
+        return CircularProgressIndicator();
+      },
+    );
+  }
+}

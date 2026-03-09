@@ -87,6 +87,52 @@ class HomeNotifier {
     );
   }
 
+  Future<int> getUserPostCount(String userId) {
+    return _homeUseCases.getUserPostCount(userId);
+  }
+
+  Future<int> getUserReactionCount(String userId) {
+    return _homeUseCases.getUserReactionCount(userId);
+  }
+
+  Future<void> removeFollower({
+    required String profileDocId,
+    required String currentUserId,
+  }) {
+    return _homeUseCases.removeFollower(
+      profileDocId: profileDocId,
+      currentUserId: currentUserId,
+    );
+  }
+
+  Future<void> addFollower({
+    required String profileDocId,
+    required String currentUserId,
+  }) {
+    return _homeUseCases.addFollower(
+      profileDocId: profileDocId,
+      currentUserId: currentUserId,
+    );
+  }
+
+  Future<void> addFollowingNotification({
+    required String senderId,
+    required String receiverId,
+    required String senderImg,
+    required String senderName,
+  }) {
+    return _homeUseCases.addFollowingNotification(
+      senderId: senderId,
+      receiverId: receiverId,
+      senderImg: senderImg,
+      senderName: senderName,
+    );
+  }
+
+  Future<Map<String, dynamic>> getCurrentUserChatProfile(String currentUserId) {
+    return _homeUseCases.getCurrentUserChatProfile(currentUserId);
+  }
+
   Future<void> signOut() {
     return _homeUseCases.signOut();
   }

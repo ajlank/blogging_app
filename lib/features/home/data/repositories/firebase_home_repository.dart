@@ -130,6 +130,87 @@ class FirebaseHomeRepository implements HomeRepository {
   }
 
   @override
+  Future<int> getUserPostCount(String userId) async {
+    final snapshot = await _firestore
+        .collection('posts')
+        .where('userId', isEqualTo: userId)
+        .get();
+
+    return snapshot.docs.length;
+  }
+
+  @override
+  Future<int> getUserReactionCount(String userId) async {
+    double totalReaction = 0;
+    final snapshots = await _firestore
+        .collection('posts')
+        .where('userId', isEqualTo: userId)
+        .get();
+
+    for (var doc in snapshots.docs) {
+      totalReaction += doc.data()['likeCount'] ?? 0;
+    }
+    return totalReaction.toInt();
+  }
+
+  @override
+  Future<void> removeFollower({
+    required String profileDocId,
+    required String currentUserId,
+  }) {
+    return _firestore.collection('profilesettings').doc(profileDocId).update({
+      'followers': FieldValue.arrayRemove([currentUserId]),
+      'followCount': FieldValue.increment(-1),
+    });
+  }
+
+  @override
+  Future<void> addFollower({
+    required String profileDocId,
+    required String currentUserId,
+  }) {
+    return _firestore.collection('profilesettings').doc(profileDocId).update({
+      'followers': FieldValue.arrayUnion([currentUserId]),
+      'followCount': FieldValue.increment(1),
+    });
+  }
+
+  @override
+  Future<void> addFollowingNotification({
+    required String senderId,
+    required String receiverId,
+    required String senderImg,
+    required String senderName,
+  }) {
+    return _firestore.collection('followingNotifications').add({
+      'notifSenderId': senderId,
+      'notifRecieverId': receiverId,
+      'notifSenderImg': senderImg,
+      'notifSenderName': senderName,
+      'followingCount': FieldValue.increment(0),
+      'createdAt': FieldValue.serverTimestamp(),
+    });
+  }
+
+  @override
+  Future<Map<String, dynamic>> getCurrentUserChatProfile(
+    String currentUserId,
+  ) async {
+    final snapshots = await _firestore
+        .collection('curentUser')
+        .doc(currentUserId)
+        .collection('user')
+        .get();
+
+    final val = snapshots.docs;
+    return {
+      'name': val[0]['name'],
+      'userId': val[0]['userId'],
+      'profileImageUrl': val[0]['profileImageUrl'],
+    };
+  }
+
+  @override
   Future<void> signOut() {
     return _auth.signOut();
   }

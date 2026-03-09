@@ -1,50 +1,10 @@
-import 'package:blog_app/controller/home_post_notifier.dart';
-import 'package:blog_app/controller/home_user_profile_notifier.dart';
-import 'package:blog_app/controller/notification_notifier.dart';
-import 'package:blog_app/controller/post_comment_notifier.dart';
-import 'package:blog_app/controller/profile_settings_notifier.dart';
-import 'package:blog_app/features/global_users/presentation/views/followers_view.dart';
-import 'package:blog_app/features/global_users/presentation/views/messages_view.dart';
+
+import 'package:blog_app/features/posts/presentation/views/create_post_view.dart';
 import 'package:blog_app/features/profile/presentation/views/profile_settings_view.dart';
-import 'package:blog_app/firebase_options.dart';
-import 'package:blog_app/features/auth/data/repositories/firebase_auth_repository.dart';
-import 'package:blog_app/features/auth/domain/repositories/auth_repository.dart';
-import 'package:blog_app/features/auth/domain/usecases/login_user_use_case.dart';
-import 'package:blog_app/features/auth/domain/usecases/sign_up_user_use_case.dart';
-import 'package:blog_app/features/auth/presentation/controllers/auth_notifier.dart';
-import 'package:blog_app/features/auth/presentation/notifiers/auth_error_notifier.dart';
-import 'package:blog_app/features/auth/presentation/views/login_view.dart';
-import 'package:blog_app/features/auth/presentation/views/sign_up_view.dart';
-import 'package:blog_app/features/home/data/repositories/firebase_home_repository.dart';
-import 'package:blog_app/features/home/domain/repositories/home_repository.dart';
-import 'package:blog_app/features/home/domain/usecases/home_use_cases.dart';
-import 'package:blog_app/features/home/presentation/controllers/home_notifier.dart';
-import 'package:blog_app/features/home/presentation/views/home_view.dart';
-import 'package:blog_app/features/global_users/data/repositories/firebase_global_users_repository.dart';
-import 'package:blog_app/features/global_users/domain/repositories/global_users_repository.dart';
-import 'package:blog_app/features/global_users/domain/usecases/global_users_use_cases.dart';
-import 'package:blog_app/features/global_users/presentation/controllers/global_users_notifier.dart';
-import 'package:blog_app/features/global_users/presentation/views/chat_with_sender_view.dart';
-import 'package:blog_app/features/profile/data/repositories/firebase_profile_repository.dart';
-import 'package:blog_app/features/profile/domain/repositories/profile_repository.dart';
-import 'package:blog_app/features/profile/domain/usecases/profile_use_cases.dart';
-import 'package:blog_app/features/profile/presentation/controllers/profile_notifier.dart';
-import 'package:blog_app/features/profile/presentation/views/profile_view.dart';
-import 'package:blog_app/utils/constants/app_routes.dart';
-import 'package:blog_app/views/chat/global_chat_view.dart';
-import 'package:blog_app/views/notifications/user_notification.dart';
-import 'package:blog_app/views/notifications/user_post_comment_notification.dart';
-import 'package:blog_app/views/user_posts/create_post.dart';
-import 'package:blog_app/views/user_posts/home_user_view.dart';
-import 'package:blog_app/views/user_posts/update_post.dart';
 import 'package:blog_app/views/user_profile_settings/profile_update.dart';
-import 'package:cloudinary_flutter/cloudinary_context.dart';
-import 'package:cloudinary_url_gen/cloudinary.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:provider/provider.dart';
+
+import 'blogging.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,6 +22,39 @@ void main() async {
         ChangeNotifierProvider(create: (context) => NotificationNotifier()),
         ChangeNotifierProvider(create: (context) => HomePostNotifier()),
         ChangeNotifierProvider(create: (context) => AuthErrorNotifier()),
+        Provider<PostsRepository>(
+          create: (context) => FirebasePostsRepository(),
+        ),
+        ProxyProvider<PostsRepository, PostsUseCases>(
+          update: (context, postsRepository, previous) =>
+              PostsUseCases(postsRepository),
+        ),
+        ProxyProvider<PostsUseCases, PostsNotifier>(
+          update: (context, postsUseCases, previous) =>
+              PostsNotifier(postsUseCases),
+        ),
+        Provider<NotificationsRepository>(
+          create: (context) => FirebaseNotificationsRepository(),
+        ),
+        ProxyProvider<NotificationsRepository, NotificationsUseCases>(
+          update: (context, notificationsRepository, previous) =>
+              NotificationsUseCases(notificationsRepository),
+        ),
+        ProxyProvider<NotificationsUseCases, NotificationsNotifier>(
+          update: (context, notificationsUseCases, previous) =>
+              NotificationsNotifier(notificationsUseCases),
+        ),
+        Provider<ChatsRepository>(
+          create: (context) => FirebaseChatsRepository(),
+        ),
+        ProxyProvider<ChatsRepository, ChatsUseCases>(
+          update: (context, chatsRepository, previous) =>
+              ChatsUseCases(chatsRepository),
+        ),
+        ProxyProvider<ChatsUseCases, ChatsNotifier>(
+          update: (context, chatsUseCases, previous) =>
+              ChatsNotifier(chatsUseCases),
+        ),
         Provider<GlobalUsersRepository>(
           create: (context) => FirebaseGlobalUsersRepository(),
         ),

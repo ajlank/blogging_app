@@ -40,5 +40,28 @@ abstract class HomeRepository {
     required String commentText,
   });
 
+  Future<int> getUserPostCount(String userId);
+
+  Future<int> getUserReactionCount(String userId);
+
+  Future<void> removeFollower({
+    required String profileDocId,
+    required String currentUserId,
+  });
+
+  Future<void> addFollower({
+    required String profileDocId,
+    required String currentUserId,
+  });
+
+  Future<void> addFollowingNotification({
+    required String senderId,
+    required String receiverId,
+    required String senderImg,
+    required String senderName,
+  });
+
+  Future<Map<String, dynamic>> getCurrentUserChatProfile(String currentUserId);
+
   Future<void> signOut();
 }

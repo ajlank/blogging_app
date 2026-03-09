@@ -87,6 +87,52 @@ class HomeUseCases {
     );
   }
 
+  Future<int> getUserPostCount(String userId) {
+    return _homeRepository.getUserPostCount(userId);
+  }
+
+  Future<int> getUserReactionCount(String userId) {
+    return _homeRepository.getUserReactionCount(userId);
+  }
+
+  Future<void> removeFollower({
+    required String profileDocId,
+    required String currentUserId,
+  }) {
+    return _homeRepository.removeFollower(
+      profileDocId: profileDocId,
+      currentUserId: currentUserId,
+    );
+  }
+
+  Future<void> addFollower({
+    required String profileDocId,
+    required String currentUserId,
+  }) {
+    return _homeRepository.addFollower(
+      profileDocId: profileDocId,
+      currentUserId: currentUserId,
+    );
+  }
+
+  Future<void> addFollowingNotification({
+    required String senderId,
+    required String receiverId,
+    required String senderImg,
+    required String senderName,
+  }) {
+    return _homeRepository.addFollowingNotification(
+      senderId: senderId,
+      receiverId: receiverId,
+      senderImg: senderImg,
+      senderName: senderName,
+    );
+  }
+
+  Future<Map<String, dynamic>> getCurrentUserChatProfile(String currentUserId) {
+    return _homeRepository.getCurrentUserChatProfile(currentUserId);
+  }
+
   Future<void> signOut() {
     return _homeRepository.signOut();
   }
