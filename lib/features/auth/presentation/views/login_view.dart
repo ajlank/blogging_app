@@ -1,19 +1,19 @@
 import 'package:blog_app/base/styles/text_styles.dart';
-import 'package:blog_app/controller/auth_controller/auth_error_notifier.dart';
-import 'package:blog_app/generics/dialog.dart';
+import 'package:blog_app/features/auth/presentation/controllers/auth_notifier.dart';
+import 'package:blog_app/features/auth/presentation/notifiers/auth_error_notifier.dart';
+import 'package:blog_app/generics/loading_sc_dialog.dart';
 import 'package:blog_app/utils/constants/app_routes.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _LoginViewState extends State<LoginView> {
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
 
@@ -31,38 +31,10 @@ class _SignUpState extends State<SignUp> {
     super.dispose();
   }
 
-  Future<void> signUpUser() async {
-    try {
-      final userCred = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-            email: _emailController.text.trim(),
-            password: _passwordController.text.trim(),
-          );
-      Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (_) => false);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        context.read<AuthErrorNotifier>().setPasswordError(
-          'Password is too weak! at least 6 digits required',
-        );
-      } else if (e.code == 'email-already-in-use') {
-        context.read<AuthErrorNotifier>().setEmailError(
-          'Email already exists! try another',
-        );
-      } else if (e.code == 'invalid-email') {
-        context.read<AuthErrorNotifier>().setEmailError(
-          'Invalid email (correct: example@something.com)',
-        );
-      } else {
-        return await showErrorDialog('An error occurred', e.code, context);
-      }
-    } catch (e) {
-      return await showErrorDialog('An error occured', e.toString(), context);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -74,8 +46,7 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Sign Up', style: TextStyles.profileHeaderText),
-
+                const Text('Login', style: TextStyles.profileHeaderText),
                 SizedBox(height: 25),
                 TextField(
                   keyboardType: TextInputType.emailAddress,
@@ -87,24 +58,6 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                 ),
-                (context.watch<AuthErrorNotifier>().emailEmailError.isNotEmpty)
-                    ? Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 12, top: 5),
-                            child: Text(
-                              context
-                                  .watch<AuthErrorNotifier>()
-                                  .emailEmailError,
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                    : SizedBox.shrink(),
                 SizedBox(height: 15),
                 TextField(
                   keyboardType: TextInputType.text,
@@ -132,6 +85,7 @@ class _SignUpState extends State<SignUp> {
                         ],
                       )
                     : SizedBox(height: 12),
+                SizedBox(height: 12),
                 Container(
                   width: size.width * .60,
                   decoration: BoxDecoration(
@@ -140,22 +94,39 @@ class _SignUpState extends State<SignUp> {
                   ),
                   child: TextButton(
                     onPressed: () async {
-                      await signUpUser();
+                      showLoadingScreen(context);
+                      bool didLogin = false;
+                      try {
+                        didLogin = await context.read<AuthNotifier>().loginUser(
+                          _emailController.text.trim(),
+                          _passwordController.text.trim(),
+                          context,
+                        );
+                      } finally {
+                        if (mounted) {
+                          Navigator.of(context).pop();
+                        }
+                      }
+                      if (!mounted || !didLogin) {
+                        return;
+                      }
+                      Navigator.of(
+                        context,
+                      ).pushNamedAndRemoveUntil(profileRoute, (_) => false);
                     },
                     child: const Text(
-                      'Sign up',
+                      'Login',
                       style: TextStyle(color: Colors.white, fontSize: 19),
                     ),
                   ),
                 ),
-
                 TextButton(
                   onPressed: () {
                     Navigator.of(
                       context,
-                    ).pushNamedAndRemoveUntil(loginRoute, (route) => false);
+                    ).pushNamedAndRemoveUntil(signUpRoute, (route) => false);
                   },
-                  child: const Text('Already registered? login here'),
+                  child: const Text('Not registered yet? register here'),
                 ),
               ],
             ),

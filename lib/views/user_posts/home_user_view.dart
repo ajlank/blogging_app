@@ -477,10 +477,7 @@ class HomeUserView extends StatelessWidget {
                                               .currentUser!
                                               .uid,
                                           "notifRecieverId":
-                                              Provider.of<NotificationNotifier>(
-                                                context,
-                                                listen: false,
-                                              ).notifRecieverId,
+                                              profileData['userId'],
                                           "notifSenderImg":
                                               Provider.of<NotificationNotifier>(
                                                 context,

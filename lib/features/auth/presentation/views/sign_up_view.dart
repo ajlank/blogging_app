@@ -1,19 +1,18 @@
 import 'package:blog_app/base/styles/text_styles.dart';
-import 'package:blog_app/controller/auth_controller/auth_error_notifier.dart';
-import 'package:blog_app/controller/auth_controller/firebase_auth_notifier.dart';
-import 'package:blog_app/generics/loading_sc_dialog.dart';
+import 'package:blog_app/features/auth/presentation/controllers/auth_notifier.dart';
+import 'package:blog_app/features/auth/presentation/notifiers/auth_error_notifier.dart';
 import 'package:blog_app/utils/constants/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class SignUp extends StatefulWidget {
+  const SignUp({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignUpState extends State<SignUp> {
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
 
@@ -34,7 +33,6 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -46,8 +44,7 @@ class _LoginViewState extends State<LoginView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Login', style: TextStyles.profileHeaderText),
-
+                const Text('Sign Up', style: TextStyles.profileHeaderText),
                 SizedBox(height: 25),
                 TextField(
                   keyboardType: TextInputType.emailAddress,
@@ -59,6 +56,22 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                 ),
+                (context.watch<AuthErrorNotifier>().emailEmailError.isNotEmpty)
+                    ? Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 12, top: 5),
+                            child: Text(
+                              context.watch<AuthErrorNotifier>().emailEmailError,
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : SizedBox.shrink(),
                 SizedBox(height: 15),
                 TextField(
                   keyboardType: TextInputType.text,
@@ -86,7 +99,6 @@ class _LoginViewState extends State<LoginView> {
                         ],
                       )
                     : SizedBox(height: 12),
-                SizedBox(height: 12),
                 Container(
                   width: size.width * .60,
                   decoration: BoxDecoration(
@@ -95,42 +107,25 @@ class _LoginViewState extends State<LoginView> {
                   ),
                   child: TextButton(
                     onPressed: () async {
-                      showLoadingScreen(context);
-                      bool didLogin = false;
-                      try {
-                        didLogin = await context
-                            .read<FirebaseAuthNotifier>()
-                            .loginUser(
-                          _emailController.text.trim(),
-                          _passwordController.text.trim(),
-                          context,
-                        );
-                      } finally {
-                        if (mounted) {
-                          Navigator.of(context).pop();
-                        }
-                      }
-                      if (!mounted || !didLogin) {
-                        return;
-                      }
-                      Navigator.of(
+                      await context.read<AuthNotifier>().signUpUser(
+                        _emailController.text.trim(),
+                        _passwordController.text.trim(),
                         context,
-                      ).pushNamedAndRemoveUntil(profileRoute, (_) => false);
+                      );
                     },
                     child: const Text(
-                      'Login',
+                      'Sign up',
                       style: TextStyle(color: Colors.white, fontSize: 19),
                     ),
                   ),
                 ),
-
                 TextButton(
                   onPressed: () {
                     Navigator.of(
                       context,
-                    ).pushNamedAndRemoveUntil(signUpRoute, (route) => false);
+                    ).pushNamedAndRemoveUntil(loginRoute, (route) => false);
                   },
-                  child: const Text('Not registered yet? register here'),
+                  child: const Text('Already registered? login here'),
                 ),
               ],
             ),

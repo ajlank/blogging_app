@@ -1,14 +1,18 @@
-import 'package:blog_app/controller/auth_controller/auth_error_notifier.dart';
-import 'package:blog_app/controller/auth_controller/firebase_auth_notifier.dart';
 import 'package:blog_app/controller/home_post_notifier.dart';
 import 'package:blog_app/controller/home_user_profile_notifier.dart';
 import 'package:blog_app/controller/notification_notifier.dart';
 import 'package:blog_app/controller/post_comment_notifier.dart';
 import 'package:blog_app/controller/profile_settings_notifier.dart';
 import 'package:blog_app/firebase_options.dart';
+import 'package:blog_app/features/auth/data/repositories/firebase_auth_repository.dart';
+import 'package:blog_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:blog_app/features/auth/domain/usecases/login_user_use_case.dart';
+import 'package:blog_app/features/auth/domain/usecases/sign_up_user_use_case.dart';
+import 'package:blog_app/features/auth/presentation/controllers/auth_notifier.dart';
+import 'package:blog_app/features/auth/presentation/notifiers/auth_error_notifier.dart';
+import 'package:blog_app/features/auth/presentation/views/login_view.dart';
+import 'package:blog_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:blog_app/utils/constants/app_routes.dart';
-import 'package:blog_app/views/auth_views/login_view.dart';
-import 'package:blog_app/views/auth_views/sign_up.dart';
 import 'package:blog_app/views/chat/global_chat_view.dart';
 import 'package:blog_app/views/home_view.dart';
 import 'package:blog_app/views/notifications/user_notification.dart';
@@ -46,8 +50,20 @@ void main() async {
         ChangeNotifierProvider(create: (context) => NotificationNotifier()),
         ChangeNotifierProvider(create: (context) => HomePostNotifier()),
         ChangeNotifierProvider(create: (context) => AuthErrorNotifier()),
-        Provider(
-          create: (context) => FirebaseAuthNotifier(FirebaseAuth.instance),
+        Provider<AuthRepository>(
+          create: (context) => FirebaseAuthRepository(FirebaseAuth.instance),
+        ),
+        ProxyProvider<AuthRepository, LoginUserUseCase>(
+          update: (context, authRepository, previous) =>
+              LoginUserUseCase(authRepository),
+        ),
+        ProxyProvider<AuthRepository, SignUpUserUseCase>(
+          update: (context, authRepository, previous) =>
+              SignUpUserUseCase(authRepository),
+        ),
+        ProxyProvider2<LoginUserUseCase, SignUpUserUseCase, AuthNotifier>(
+          update: (context, loginUseCase, signUpUseCase, previous) =>
+              AuthNotifier(loginUseCase, signUpUseCase),
         ),
       ],
       child: MyApp(),

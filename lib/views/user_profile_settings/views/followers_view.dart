@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class FollowersView extends StatelessWidget {
@@ -6,15 +7,26 @@ class FollowersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser == null) {
+      return const Scaffold(
+        body: Center(child: Text('Please login again')),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(title: Text('All followers'), centerTitle: true),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection("followingNotifications")
+            .where('notifRecieverId', isEqualTo: currentUser.uid)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return const Center(child: Text('No followers yet'));
           }
           if (snapshot.hasData) {
             final docs = snapshot.data!.docs;
@@ -43,7 +55,7 @@ class FollowersView extends StatelessWidget {
               },
             );
           }
-          return CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         },
       ),
     );
