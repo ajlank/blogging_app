@@ -12,9 +12,13 @@ import 'package:blog_app/features/auth/presentation/controllers/auth_notifier.da
 import 'package:blog_app/features/auth/presentation/notifiers/auth_error_notifier.dart';
 import 'package:blog_app/features/auth/presentation/views/login_view.dart';
 import 'package:blog_app/features/auth/presentation/views/sign_up_view.dart';
+import 'package:blog_app/features/home/data/repositories/firebase_home_repository.dart';
+import 'package:blog_app/features/home/domain/repositories/home_repository.dart';
+import 'package:blog_app/features/home/domain/usecases/home_use_cases.dart';
+import 'package:blog_app/features/home/presentation/controllers/home_notifier.dart';
+import 'package:blog_app/features/home/presentation/views/home_view.dart';
 import 'package:blog_app/utils/constants/app_routes.dart';
 import 'package:blog_app/views/chat/global_chat_view.dart';
-import 'package:blog_app/views/home_view.dart';
 import 'package:blog_app/views/notifications/user_notification.dart';
 import 'package:blog_app/views/notifications/user_post_comment_notification.dart';
 import 'package:blog_app/views/profile_view.dart';
@@ -50,6 +54,17 @@ void main() async {
         ChangeNotifierProvider(create: (context) => NotificationNotifier()),
         ChangeNotifierProvider(create: (context) => HomePostNotifier()),
         ChangeNotifierProvider(create: (context) => AuthErrorNotifier()),
+        Provider<HomeRepository>(
+          create: (context) => FirebaseHomeRepository(),
+        ),
+        ProxyProvider<HomeRepository, HomeUseCases>(
+          update: (context, homeRepository, previous) =>
+              HomeUseCases(homeRepository),
+        ),
+        ProxyProvider<HomeUseCases, HomeNotifier>(
+          update: (context, homeUseCases, previous) =>
+              HomeNotifier(homeUseCases),
+        ),
         Provider<AuthRepository>(
           create: (context) => FirebaseAuthRepository(FirebaseAuth.instance),
         ),
