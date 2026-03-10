@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:blog_app/core/utils/constants/post_strings.dart';
 
 class CreatePostTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -12,7 +13,7 @@ class CreatePostTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      decoration: InputDecoration(hintText: 'Write your post...'),
+      decoration: InputDecoration(hintText: PostStrings.writeYourPostHint),
     );
   }
 }

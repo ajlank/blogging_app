@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:blog_app/core/utils/constants/post_strings.dart';
 
 class CreatePostButton extends StatelessWidget {
   final Future<void> Function() onPressed;
@@ -14,7 +15,7 @@ class CreatePostButton extends StatelessWidget {
       onPressed: () async {
         await onPressed();
       },
-      child: const Text('Post'),
+      child: const Text(PostStrings.postButton),
     );
   }
 }

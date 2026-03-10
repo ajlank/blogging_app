@@ -5,6 +5,7 @@ import 'package:blog_app/features/posts/presentation/widgets/create_post_button.
 import 'package:blog_app/features/posts/presentation/widgets/create_post_image_picker.dart';
 import 'package:blog_app/features/posts/presentation/widgets/create_post_text_field.dart';
 import 'package:blog_app/core/utils/constants/app_routes.dart';
+import 'package:blog_app/core/utils/constants/post_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -52,7 +53,7 @@ class _CreatePostState extends State<CreatePost> {
       final userImageUrl = profile.profileImageUrl;
 
       if (userName.isEmpty || userImageUrl.isEmpty) {
-        print("User data not loaded.");
+        print(PostStrings.userDataNotLoaded);
         return;
       }
 
