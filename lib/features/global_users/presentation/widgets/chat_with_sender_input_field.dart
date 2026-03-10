@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:blog_app/base/styles/global_users_theme.dart';
 
 class ChatWithSenderInputField extends StatelessWidget {
   final TextEditingController controller;
@@ -14,6 +15,8 @@ class ChatWithSenderInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final globalUsersTheme = Theme.of(context).extension<GlobalUsersTheme>()!;
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
@@ -25,7 +28,10 @@ class ChatWithSenderInputField extends StatelessWidget {
             onPressed: () async {
               await onSend();
             },
-            icon: const Icon(Icons.send, color: Colors.blue),
+            icon: Icon(
+              Icons.send,
+              color: globalUsersTheme.chatWithSenderSendIconColor,
+            ),
           ),
         ),
       ),

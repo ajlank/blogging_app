@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:blog_app/base/styles/global_users_theme.dart';
 
 class ChatWithSenderMessageTile extends StatelessWidget {
   final String senderMessage;
@@ -12,14 +13,16 @@ class ChatWithSenderMessageTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final globalUsersTheme = Theme.of(context).extension<GlobalUsersTheme>()!;
+
     return ListTile(
       title: Text(
         senderMessage,
-        style: TextStyle(fontSize: 13.2),
+        style: globalUsersTheme.chatWithSenderMessageTextStyle,
       ),
       trailing: Text(
         recieverMessage,
-        style: TextStyle(fontSize: 13.2),
+        style: globalUsersTheme.chatWithSenderMessageTextStyle,
       ),
     );
   }

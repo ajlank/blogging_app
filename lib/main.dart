@@ -1,5 +1,7 @@
 
 import 'package:blog_app/base/styles/auth_theme.dart';
+import 'package:blog_app/base/styles/chat_theme.dart';
+import 'package:blog_app/base/styles/global_users_theme.dart';
 import 'package:blog_app/features/posts/presentation/views/create_post_view.dart';
 import 'blogging.dart';
 
@@ -126,6 +128,18 @@ class MyApp extends StatelessWidget {
             ),
             authButtonRadius: BorderRadius.all(Radius.circular(12)),
             authFieldRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+          ChatTheme(
+            legacyChatBackgroundColor: Color(0xFF424242),
+          ),
+          GlobalUsersTheme(
+            chatWithSenderSendIconColor: Colors.blue,
+            chatWithSenderLabelTextStyle: TextStyle(fontSize: 13),
+            chatWithSenderNameTextStyle: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+            chatWithSenderMessageTextStyle: TextStyle(fontSize: 13.2),
           ),
         ],
       ),

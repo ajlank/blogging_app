@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:blog_app/base/styles/chat_theme.dart';
 import 'package:blog_app/features/chats/presentation/controllers/chats_notifier.dart';
 import 'package:blog_app/features/chats/presentation/widgets/legacy_chat_app_bar.dart';
 import 'package:blog_app/features/chats/presentation/widgets/legacy_chat_message_input.dart';
@@ -31,10 +32,11 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     final stream = context.read<ChatsNotifier>().watchLegacyChatMessages();
+    final chatTheme = Theme.of(context).extension<ChatTheme>()!;
 
     return Scaffold(
       appBar: const LegacyChatAppBar(),
-      backgroundColor: Colors.grey.shade800,
+      backgroundColor: chatTheme.legacyChatBackgroundColor,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
