@@ -2,6 +2,7 @@ import 'package:blog_app/core/base/styles/text_styles.dart';
 import 'package:blog_app/core/base/styles/auth_theme.dart';
 import 'package:blog_app/features/auth/presentation/controllers/auth_notifier.dart';
 import 'package:blog_app/features/auth/presentation/notifiers/auth_error_notifier.dart';
+import 'package:blog_app/core/utils/constants/auth_strings.dart';
 import 'package:blog_app/core/utils/constants/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -47,13 +48,16 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Sign Up', style: TextStyles.profileHeaderText),
+                const Text(
+                  AuthStrings.signUpTitle,
+                  style: TextStyles.profileHeaderText,
+                ),
                 SizedBox(height: 25),
                 TextField(
                   keyboardType: TextInputType.emailAddress,
                   controller: _emailController,
                   decoration: InputDecoration(
-                    hintText: 'Enter your email',
+                    hintText: AuthStrings.emailHint,
                     border: OutlineInputBorder(
                       borderRadius: authTheme.authFieldRadius,
                     ),
@@ -77,7 +81,7 @@ class _SignUpState extends State<SignUp> {
                   keyboardType: TextInputType.text,
                   controller: _passwordController,
                   decoration: InputDecoration(
-                    hintText: 'Enter your password',
+                    hintText: AuthStrings.passwordHint,
                     border: OutlineInputBorder(
                       borderRadius: authTheme.authFieldRadius,
                     ),
@@ -111,7 +115,7 @@ class _SignUpState extends State<SignUp> {
                       );
                     },
                     child: Text(
-                      'Sign up',
+                      AuthStrings.signUpButton,
                       style: authTheme.authButtonTextStyle,
                     ),
                   ),
@@ -122,7 +126,7 @@ class _SignUpState extends State<SignUp> {
                       context,
                     ).pushNamedAndRemoveUntil(loginRoute, (route) => false);
                   },
-                  child: const Text('Already registered? login here'),
+                  child: const Text(AuthStrings.goToLogin),
                 ),
               ],
             ),

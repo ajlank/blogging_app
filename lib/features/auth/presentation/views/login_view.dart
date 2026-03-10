@@ -2,6 +2,7 @@ import 'package:blog_app/core/base/styles/text_styles.dart';
 import 'package:blog_app/core/base/styles/auth_theme.dart';
 import 'package:blog_app/features/auth/presentation/controllers/auth_notifier.dart';
 import 'package:blog_app/features/auth/presentation/notifiers/auth_error_notifier.dart';
+import 'package:blog_app/core/utils/constants/auth_strings.dart';
 import 'package:blog_app/core/generics/loading_sc_dialog.dart';
 import 'package:blog_app/core/utils/constants/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -49,13 +50,16 @@ class _LoginViewState extends State<LoginView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Login', style: TextStyles.profileHeaderText),
+                const Text(
+                  AuthStrings.loginTitle,
+                  style: TextStyles.profileHeaderText,
+                ),
                 SizedBox(height: 25),
                 TextField(
                   keyboardType: TextInputType.emailAddress,
                   controller: _emailController,
                   decoration: InputDecoration(
-                    hintText: 'Enter your email',
+                    hintText: AuthStrings.emailHint,
                     border: OutlineInputBorder(
                       borderRadius: authTheme.authFieldRadius,
                     ),
@@ -66,7 +70,7 @@ class _LoginViewState extends State<LoginView> {
                   keyboardType: TextInputType.text,
                   controller: _passwordController,
                   decoration: InputDecoration(
-                    hintText: 'Enter your password',
+                    hintText: AuthStrings.passwordHint,
                     border: OutlineInputBorder(
                       borderRadius: authTheme.authFieldRadius,
                     ),
@@ -115,7 +119,7 @@ class _LoginViewState extends State<LoginView> {
                       ).pushNamedAndRemoveUntil(profileRoute, (_) => false);
                     },
                     child: Text(
-                      'Login',
+                      AuthStrings.loginTitle,
                       style: authTheme.authButtonTextStyle,
                     ),
                   ),
@@ -126,7 +130,7 @@ class _LoginViewState extends State<LoginView> {
                       context,
                     ).pushNamedAndRemoveUntil(signUpRoute, (route) => false);
                   },
-                  child: const Text('Not registered yet? register here'),
+                  child: const Text(AuthStrings.goToSignUp),
                 ),
               ],
             ),
