@@ -1,5 +1,5 @@
 import 'package:blog_app/features/profile/presentation/widgets/profile_stat_item.dart';
-import 'package:blog_app/base/styles/profile_theme.dart';
+import 'package:blog_app/core/base/styles/profile_theme.dart';
 import 'package:flutter/material.dart';
 
 class ProfileStatsSection extends StatelessWidget {

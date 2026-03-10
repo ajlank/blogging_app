@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:blog_app/base/styles/home_theme.dart';
+import 'package:blog_app/core/base/styles/home_theme.dart';
 
 class HomeUserAvatarSection extends StatelessWidget {
   final String profileImageUrl;

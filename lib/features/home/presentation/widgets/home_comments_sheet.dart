@@ -1,6 +1,6 @@
 import 'package:blog_app/controller/profile_settings_notifier.dart';
 import 'package:blog_app/features/home/presentation/controllers/home_notifier.dart';
-import 'package:blog_app/base/styles/home_theme.dart';
+import 'package:blog_app/core/base/styles/home_theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

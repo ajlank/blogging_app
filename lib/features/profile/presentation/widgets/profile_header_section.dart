@@ -1,5 +1,5 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:blog_app/base/styles/profile_theme.dart';
+import 'package:blog_app/core/base/styles/profile_theme.dart';
 import 'package:flutter/material.dart';
 
 class ProfileHeaderSection extends StatelessWidget {

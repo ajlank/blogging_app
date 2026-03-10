@@ -3,7 +3,7 @@ import 'package:blog_app/controller/home_user_profile_notifier.dart';
 import 'package:blog_app/controller/notification_notifier.dart';
 import 'package:blog_app/controller/post_comment_notifier.dart';
 import 'package:blog_app/controller/profile_settings_notifier.dart';
-import 'package:blog_app/base/styles/home_theme.dart';
+import 'package:blog_app/core/base/styles/home_theme.dart';
 import 'package:blog_app/features/home/presentation/controllers/home_notifier.dart';
 import 'package:blog_app/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:blog_app/features/home/presentation/widgets/home_comments_sheet.dart';

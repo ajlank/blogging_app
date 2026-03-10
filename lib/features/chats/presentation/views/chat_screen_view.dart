@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:blog_app/base/styles/chat_theme.dart';
+import 'package:blog_app/core/base/styles/chat_theme.dart';
 import 'package:blog_app/features/chats/presentation/controllers/chats_notifier.dart';
 import 'package:blog_app/features/chats/presentation/widgets/legacy_chat_app_bar.dart';
 import 'package:blog_app/features/chats/presentation/widgets/legacy_chat_message_input.dart';

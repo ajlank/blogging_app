@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:blog_app/base/styles/global_users_theme.dart';
+import 'package:blog_app/core/base/styles/global_users_theme.dart';
 
 class ChatWithSenderMessageTile extends StatelessWidget {
   final String senderMessage;

@@ -1,4 +1,4 @@
-import 'package:blog_app/base/styles/text_styles.dart';
+import 'package:blog_app/core/base/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class UserNotificationAppBar extends StatelessWidget

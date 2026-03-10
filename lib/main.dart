@@ -1,9 +1,9 @@
 
-import 'package:blog_app/base/styles/auth_theme.dart';
-import 'package:blog_app/base/styles/chat_theme.dart';
-import 'package:blog_app/base/styles/global_users_theme.dart';
-import 'package:blog_app/base/styles/home_theme.dart';
-import 'package:blog_app/base/styles/profile_theme.dart';
+import 'package:blog_app/core/base/styles/auth_theme.dart';
+import 'package:blog_app/core/base/styles/chat_theme.dart';
+import 'package:blog_app/core/base/styles/global_users_theme.dart';
+import 'package:blog_app/core/base/styles/home_theme.dart';
+import 'package:blog_app/core/base/styles/profile_theme.dart';
 import 'package:blog_app/features/posts/presentation/views/create_post_view.dart';
 import 'blogging.dart';
 

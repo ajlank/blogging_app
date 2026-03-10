@@ -1,5 +1,5 @@
-import 'package:blog_app/base/styles/text_styles.dart';
-import 'package:blog_app/base/styles/profile_theme.dart';
+import 'package:blog_app/core/base/styles/text_styles.dart';
+import 'package:blog_app/core/base/styles/profile_theme.dart';
 import 'package:flutter/material.dart';
 
 class ProfileAboutHeaderSection extends StatelessWidget {

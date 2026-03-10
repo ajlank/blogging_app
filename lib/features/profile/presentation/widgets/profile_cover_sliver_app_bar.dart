@@ -1,5 +1,5 @@
 import 'package:blog_app/core/utils/customs/custom_clipper.dart';
-import 'package:blog_app/base/styles/profile_theme.dart';
+import 'package:blog_app/core/base/styles/profile_theme.dart';
 import 'package:flutter/material.dart';
 
 class ProfileCoverSliverAppBar extends StatelessWidget {

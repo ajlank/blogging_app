@@ -1,5 +1,5 @@
-import 'package:blog_app/base/styles/text_styles.dart';
-import 'package:blog_app/base/styles/auth_theme.dart';
+import 'package:blog_app/core/base/styles/text_styles.dart';
+import 'package:blog_app/core/base/styles/auth_theme.dart';
 import 'package:blog_app/features/auth/presentation/controllers/auth_notifier.dart';
 import 'package:blog_app/features/auth/presentation/notifiers/auth_error_notifier.dart';
 import 'package:blog_app/core/generics/loading_sc_dialog.dart';
