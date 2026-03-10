@@ -3,6 +3,7 @@ import 'package:blog_app/controller/home_user_profile_notifier.dart';
 import 'package:blog_app/controller/notification_notifier.dart';
 import 'package:blog_app/controller/post_comment_notifier.dart';
 import 'package:blog_app/controller/profile_settings_notifier.dart';
+import 'package:blog_app/base/styles/home_theme.dart';
 import 'package:blog_app/features/home/presentation/controllers/home_notifier.dart';
 import 'package:blog_app/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:blog_app/features/home/presentation/widgets/home_comments_sheet.dart';
@@ -18,6 +19,7 @@ class HomeView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeTheme = Theme.of(context).extension<HomeTheme>()!;
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser == null) {
       return const Scaffold(
@@ -60,7 +62,7 @@ class HomeView extends HookWidget {
     final globalChatCount = globalChatResult.data?.docs.length ?? 0;
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 225, 227, 230),
+      backgroundColor: homeTheme.homeScaffoldBackgroundColor,
       appBar: HomeAppBar(
         globalChatCount: globalChatCount,
         postReactionCommentCount: postReactionCommentCount,
@@ -192,11 +194,12 @@ class HomeView extends HookWidget {
 }
 
 void showSnckBarr(BuildContext context, String text) {
+  final homeTheme = Theme.of(context).extension<HomeTheme>()!;
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(text),
       duration: const Duration(seconds: 3),
-      backgroundColor: Colors.black,
+      backgroundColor: homeTheme.homeSnackBarBackgroundColor,
       padding: EdgeInsets.all(14),
     ),
   );

@@ -2,6 +2,7 @@
 import 'package:blog_app/base/styles/auth_theme.dart';
 import 'package:blog_app/base/styles/chat_theme.dart';
 import 'package:blog_app/base/styles/global_users_theme.dart';
+import 'package:blog_app/base/styles/home_theme.dart';
 import 'package:blog_app/features/posts/presentation/views/create_post_view.dart';
 import 'blogging.dart';
 
@@ -140,6 +141,49 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             chatWithSenderMessageTextStyle: TextStyle(fontSize: 13.2),
+          ),
+          HomeTheme(
+            homeScaffoldBackgroundColor: Color(0xFFE1E3E6),
+            homeAppBarBackgroundColor: Colors.white,
+            homeSectionBackgroundColor: Colors.white,
+            homePostCardBackgroundColor: Color(0xFFFEFBFB),
+            homeSnackBarBackgroundColor: Colors.black,
+            homeCommentSheetBackgroundColor: Colors.white,
+            homeCommentSheetHandleColor: Color(0xFFE0E0E0),
+            homeCommentSendIconColor: Colors.blue,
+            homeUserActionFollowingColor: Colors.green,
+            homeUserActionPrimaryColor: Colors.brown,
+            homeUserActionIconColor: Colors.white,
+            homeStatDividerColor: Color(0xFFA19F9F),
+            homePostCardRadius: BorderRadius.all(Radius.circular(30)),
+            homePostImageRadius: BorderRadius.all(Radius.circular(16)),
+            homeActionButtonRadius: BorderRadius.all(Radius.circular(16)),
+            homeCommentSheetRadius: BorderRadius.vertical(
+              top: Radius.circular(20),
+            ),
+            homeCommentSheetHandleRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
+            homeMemberSinceTextStyle: TextStyle(
+              fontWeight: FontWeight.w300,
+              fontSize: 13,
+            ),
+            homePostTimestampTextStyle: TextStyle(
+              fontWeight: FontWeight.w300,
+              fontSize: 12,
+            ),
+            homePostBodyTextStyle: TextStyle(
+              fontSize: 13.5,
+              fontWeight: FontWeight.w400,
+            ),
+            homeStatLabelTextStyle: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 10,
+            ),
+            homeActionButtonTextStyle: TextStyle(
+              color: Colors.white,
+              fontSize: 15,
+            ),
           ),
         ],
       ),

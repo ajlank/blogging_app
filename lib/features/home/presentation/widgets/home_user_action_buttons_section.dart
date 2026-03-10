@@ -1,4 +1,4 @@
-import 'package:blog_app/base/styles/text_styles.dart';
+import 'package:blog_app/base/styles/home_theme.dart';
 import 'package:flutter/material.dart';
 
 class HomeUserActionButtonsSection extends StatelessWidget {
@@ -21,10 +21,12 @@ class HomeUserActionButtonsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeTheme = Theme.of(context).extension<HomeTheme>()!;
+
     return SliverToBoxAdapter(
       child: Container(
         height: 60,
-        color: Colors.white,
+        color: homeTheme.homeSectionBackgroundColor,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -35,21 +37,19 @@ class HomeUserActionButtonsSection extends StatelessWidget {
                       height: 40,
                       width: 120,
                       decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(16),
+                        color: homeTheme.homeUserActionFollowingColor,
+                        borderRadius: homeTheme.homeActionButtonRadius,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
                             'Following',
-                            style: TextStyles.profileButtonDesign.copyWith(
-                              fontSize: 15,
-                            ),
+                            style: homeTheme.homeActionButtonTextStyle,
                           ),
                           Icon(
                             Icons.arrow_downward_sharp,
-                            color: Colors.white,
+                            color: homeTheme.homeUserActionIconColor,
                           ),
                         ],
                       ),
@@ -62,19 +62,17 @@ class HomeUserActionButtonsSection extends StatelessWidget {
                       height: 40,
                       width: 120,
                       decoration: BoxDecoration(
-                        color: Colors.brown,
-                        borderRadius: BorderRadius.circular(16),
+                        color: homeTheme.homeUserActionPrimaryColor,
+                        borderRadius: homeTheme.homeActionButtonRadius,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
                             'Follow',
-                            style: TextStyles.profileButtonDesign.copyWith(
-                              fontSize: 15,
-                            ),
+                            style: homeTheme.homeActionButtonTextStyle,
                           ),
-                          Icon(Icons.add, color: Colors.white),
+                          Icon(Icons.add, color: homeTheme.homeUserActionIconColor),
                         ],
                       ),
                     ),
@@ -87,19 +85,20 @@ class HomeUserActionButtonsSection extends StatelessWidget {
                       height: 40,
                       width: 120,
                       decoration: BoxDecoration(
-                        color: Colors.brown,
-                        borderRadius: BorderRadius.circular(16),
+                        color: homeTheme.homeUserActionPrimaryColor,
+                        borderRadius: homeTheme.homeActionButtonRadius,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
                             'Chat',
-                            style: TextStyles.profileButtonDesign.copyWith(
-                              fontSize: 15,
-                            ),
+                            style: homeTheme.homeActionButtonTextStyle,
                           ),
-                          Icon(Icons.chat, color: Colors.white),
+                          Icon(
+                            Icons.chat,
+                            color: homeTheme.homeUserActionIconColor,
+                          ),
                         ],
                       ),
                     ),

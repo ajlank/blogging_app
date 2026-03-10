@@ -1,4 +1,5 @@
 import 'package:blog_app/base/styles/text_styles.dart';
+import 'package:blog_app/base/styles/home_theme.dart';
 import 'package:flutter/material.dart';
 
 class HomeUserMemberInfoSection extends StatelessWidget {
@@ -11,9 +12,11 @@ class HomeUserMemberInfoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeTheme = Theme.of(context).extension<HomeTheme>()!;
+
     return SliverToBoxAdapter(
       child: Container(
-        color: Colors.white,
+        color: homeTheme.homeSectionBackgroundColor,
         height: 100,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -23,10 +26,7 @@ class HomeUserMemberInfoSection extends StatelessWidget {
               children: [
                 Text(
                   'Member since Dec 2024',
-                  style: TextStyles.profileHeaderText.copyWith(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 13,
-                  ),
+                  style: homeTheme.homeMemberSinceTextStyle,
                 ),
               ],
             ),

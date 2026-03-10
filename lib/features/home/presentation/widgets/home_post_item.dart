@@ -1,4 +1,5 @@
 import 'package:blog_app/base/styles/text_styles.dart';
+import 'package:blog_app/base/styles/home_theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ class HomePostItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeTheme = Theme.of(context).extension<HomeTheme>()!;
     final isOwner = postData['userId'] == currentUserId;
     final isLikedByCurrentUser = ((postData['likedBy'] ?? []) as List<dynamic>)
         .contains(currentUserId);
@@ -39,8 +41,8 @@ class HomePostItem extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 254, 251, 251),
-        borderRadius: BorderRadius.circular(30),
+        color: homeTheme.homePostCardBackgroundColor,
+        borderRadius: homeTheme.homePostCardRadius,
       ),
       padding: const EdgeInsets.all(12),
       child: Column(
@@ -65,10 +67,7 @@ class HomePostItem extends StatelessWidget {
                   ),
                   Text(
                     'Posted on ${DateFormat('MMMM d, y - hh:mm a').format((postData['postedAt'] as Timestamp).toDate())}',
-                    style: TextStyles.profileHeaderText.copyWith(
-                      fontWeight: FontWeight.w300,
-                      fontSize: 12,
-                    ),
+                    style: homeTheme.homePostTimestampTextStyle,
                   ),
                 ],
               ),
@@ -103,16 +102,13 @@ class HomePostItem extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             postData['userPostText'] ?? '',
-            style: TextStyles.profileHeaderText.copyWith(
-              fontSize: 13.5,
-              fontWeight: FontWeight.w400,
-            ),
+            style: homeTheme.homePostBodyTextStyle,
           ),
           if ((postData['postImageUrl'] ?? '').isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(top: 12),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: homeTheme.homePostImageRadius,
                 child: Image.network(postData['postImageUrl']),
               ),
             ),

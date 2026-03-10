@@ -1,4 +1,4 @@
-import 'package:blog_app/base/styles/text_styles.dart';
+import 'package:blog_app/base/styles/home_theme.dart';
 import 'package:flutter/material.dart';
 
 class HomeUserStatItem extends StatelessWidget {
@@ -15,6 +15,8 @@ class HomeUserStatItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeTheme = Theme.of(context).extension<HomeTheme>()!;
+
     return Container(
       height: 70,
       width: 70,
@@ -22,7 +24,7 @@ class HomeUserStatItem extends StatelessWidget {
         border: Border(
           right: BorderSide(
             width: 0.6,
-            color: const Color.fromARGB(255, 161, 159, 159),
+            color: homeTheme.homeStatDividerColor,
           ),
         ),
       ),
@@ -34,10 +36,7 @@ class HomeUserStatItem extends StatelessWidget {
           SizedBox(height: 4),
           Text(
             label,
-            style: TextStyles.profileHeaderText.copyWith(
-              fontWeight: FontWeight.w400,
-              fontSize: 10,
-            ),
+            style: homeTheme.homeStatLabelTextStyle,
           ),
         ],
       ),

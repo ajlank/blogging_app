@@ -1,5 +1,6 @@
 import 'package:blog_app/controller/profile_settings_notifier.dart';
 import 'package:blog_app/features/home/presentation/controllers/home_notifier.dart';
+import 'package:blog_app/base/styles/home_theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,13 +11,14 @@ void showHomeCommentsSheet(
 }) {
   final TextEditingController commentController = TextEditingController();
   final homeNotifier = context.read<HomeNotifier>();
+  final homeTheme = Theme.of(context).extension<HomeTheme>()!;
 
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
-    backgroundColor: Colors.white,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    backgroundColor: homeTheme.homeCommentSheetBackgroundColor,
+    shape: RoundedRectangleBorder(
+      borderRadius: homeTheme.homeCommentSheetRadius,
     ),
     builder: (context) {
       return Padding(
@@ -31,8 +33,8 @@ void showHomeCommentsSheet(
               height: 5,
               width: 40,
               decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(10),
+                color: homeTheme.homeCommentSheetHandleColor,
+                borderRadius: homeTheme.homeCommentSheetHandleRadius,
               ),
             ),
             const SizedBox(height: 12),
@@ -89,7 +91,10 @@ void showHomeCommentsSheet(
                   ),
                   const SizedBox(width: 8),
                   IconButton(
-                    icon: const Icon(Icons.send, color: Colors.blue),
+                    icon: Icon(
+                      Icons.send,
+                      color: homeTheme.homeCommentSendIconColor,
+                    ),
                     onPressed: () async {
                       final text = commentController.text;
                       final currentUser = FirebaseAuth.instance.currentUser;

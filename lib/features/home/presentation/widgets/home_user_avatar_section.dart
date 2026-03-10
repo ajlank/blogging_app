@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:blog_app/base/styles/home_theme.dart';
 
 class HomeUserAvatarSection extends StatelessWidget {
   final String profileImageUrl;
@@ -10,9 +11,11 @@ class HomeUserAvatarSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeTheme = Theme.of(context).extension<HomeTheme>()!;
+
     return SliverToBoxAdapter(
       child: Container(
-        color: Colors.white,
+        color: homeTheme.homeSectionBackgroundColor,
         height: 100,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

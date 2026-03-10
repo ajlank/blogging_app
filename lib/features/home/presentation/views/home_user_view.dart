@@ -1,6 +1,7 @@
 import 'package:blog_app/controller/home_user_profile_notifier.dart';
 import 'package:blog_app/controller/notification_notifier.dart';
 import 'package:blog_app/controller/profile_settings_notifier.dart';
+import 'package:blog_app/base/styles/home_theme.dart';
 import 'package:blog_app/features/chats/presentation/views/chat_view.dart';
 import 'package:blog_app/features/home/presentation/controllers/home_notifier.dart';
 import 'package:blog_app/features/home/presentation/widgets/home_user_about_sections.dart';
@@ -164,11 +165,12 @@ class HomeUserView extends StatelessWidget {
 }
 
 void showSnckBar(BuildContext context, String text) {
+  final homeTheme = Theme.of(context).extension<HomeTheme>()!;
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(text),
       duration: const Duration(seconds: 3),
-      backgroundColor: Colors.black,
+      backgroundColor: homeTheme.homeSnackBarBackgroundColor,
       padding: EdgeInsets.all(14),
     ),
   );

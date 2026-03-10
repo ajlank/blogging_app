@@ -1,4 +1,5 @@
 import 'package:blog_app/features/home/presentation/widgets/home_user_stat_item.dart';
+import 'package:blog_app/base/styles/home_theme.dart';
 import 'package:flutter/material.dart';
 
 class HomeUserStatsSection extends StatelessWidget {
@@ -17,10 +18,12 @@ class HomeUserStatsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeTheme = Theme.of(context).extension<HomeTheme>()!;
+
     return SliverToBoxAdapter(
       child: Container(
         height: 100,
-        color: Colors.white,
+        color: homeTheme.homeSectionBackgroundColor,
         child: Padding(
           padding: const EdgeInsets.only(left: 50, right: 50),
           child: Row(

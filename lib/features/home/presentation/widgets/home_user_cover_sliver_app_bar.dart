@@ -1,4 +1,5 @@
 import 'package:blog_app/core/utils/customs/custom_clipper.dart';
+import 'package:blog_app/base/styles/home_theme.dart';
 import 'package:flutter/material.dart';
 
 class HomeUserCoverSliverAppBar extends StatelessWidget {
@@ -11,8 +12,10 @@ class HomeUserCoverSliverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeTheme = Theme.of(context).extension<HomeTheme>()!;
+
     return SliverAppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: homeTheme.homeAppBarBackgroundColor,
       expandedHeight: 300.0,
       pinned: false,
       snap: false,
