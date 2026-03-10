@@ -1,4 +1,5 @@
 import 'package:blog_app/base/styles/text_styles.dart';
+import 'package:blog_app/base/styles/auth_theme.dart';
 import 'package:blog_app/features/auth/presentation/controllers/auth_notifier.dart';
 import 'package:blog_app/features/auth/presentation/notifiers/auth_error_notifier.dart';
 import 'package:blog_app/core/generics/loading_sc_dialog.dart';
@@ -34,9 +35,11 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+    final authTheme = theme.extension<AuthTheme>()!;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Center(
@@ -54,7 +57,7 @@ class _LoginViewState extends State<LoginView> {
                   decoration: InputDecoration(
                     hintText: 'Enter your email',
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: authTheme.authFieldRadius,
                     ),
                   ),
                 ),
@@ -65,7 +68,7 @@ class _LoginViewState extends State<LoginView> {
                   decoration: InputDecoration(
                     hintText: 'Enter your password',
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: authTheme.authFieldRadius,
                     ),
                   ),
                 ),
@@ -76,10 +79,7 @@ class _LoginViewState extends State<LoginView> {
                             padding: const EdgeInsets.only(left: 12, top: 5),
                             child: Text(
                               context.watch<AuthErrorNotifier>().passwordError,
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: authTheme.authErrorTextStyle,
                             ),
                           ),
                         ],
@@ -89,8 +89,8 @@ class _LoginViewState extends State<LoginView> {
                 Container(
                   width: size.width * .60,
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 136, 196, 212),
-                    borderRadius: BorderRadius.circular(12),
+                    color: authTheme.authButtonColor,
+                    borderRadius: authTheme.authButtonRadius,
                   ),
                   child: TextButton(
                     onPressed: () async {
@@ -114,9 +114,9 @@ class _LoginViewState extends State<LoginView> {
                         context,
                       ).pushNamedAndRemoveUntil(profileRoute, (_) => false);
                     },
-                    child: const Text(
+                    child: Text(
                       'Login',
-                      style: TextStyle(color: Colors.white, fontSize: 19),
+                      style: authTheme.authButtonTextStyle,
                     ),
                   ),
                 ),

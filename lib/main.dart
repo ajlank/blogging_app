@@ -1,4 +1,5 @@
 
+import 'package:blog_app/base/styles/auth_theme.dart';
 import 'package:blog_app/features/posts/presentation/views/create_post_view.dart';
 import 'blogging.dart';
 
@@ -113,7 +114,20 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Blog App',
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+        extensions: const <ThemeExtension<dynamic>>[
+          AuthTheme(
+            authButtonColor: Color(0xFF88C4D4),
+            authButtonTextStyle: TextStyle(color: Colors.white, fontSize: 19),
+            authErrorTextStyle: TextStyle(
+              color: Colors.red,
+              fontWeight: FontWeight.bold,
+            ),
+            authButtonRadius: BorderRadius.all(Radius.circular(12)),
+            authFieldRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+        ],
       ),
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
