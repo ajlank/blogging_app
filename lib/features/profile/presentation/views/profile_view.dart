@@ -8,6 +8,7 @@ import 'package:blog_app/features/profile/presentation/widgets/profile_header_se
 import 'package:blog_app/features/profile/presentation/widgets/profile_member_info_section.dart';
 import 'package:blog_app/features/profile/presentation/widgets/profile_stats_section.dart';
 import 'package:blog_app/core/utils/constants/app_routes.dart';
+import 'package:blog_app/core/utils/constants/profile_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,19 +27,19 @@ class ProfileView extends StatelessWidget {
         ),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text('Loading..');
+            return Text(ProfileStrings.loadingEllipsis);
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Please update your profile and navigate to this view"),
+                  Text(ProfileStrings.updateProfilePrompt),
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed(profileSettingsRoute);
                     },
-                    child: const Text('Update profile'),
+                    child: const Text(ProfileStrings.updateProfile),
                   ),
                 ],
               ),
@@ -82,7 +83,9 @@ class ProfileView extends StatelessWidget {
                     );
                   },
                 ),
-                ProfileMemberInfoSection(name: profileData['name'] ?? 'Your name'),
+                ProfileMemberInfoSection(
+                  name: profileData['name'] ?? ProfileStrings.yourNameFallback,
+                ),
                 ProfileStatsSection(
                   userId: profileData['userId'],
                   followCount: profileData['followCount'],
@@ -102,7 +105,7 @@ class ProfileView extends StatelessWidget {
               ],
             );
           }
-          return Text('Loading');
+          return Text(ProfileStrings.loading);
         },
       ),
     );

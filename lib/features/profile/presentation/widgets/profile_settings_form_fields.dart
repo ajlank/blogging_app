@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:blog_app/core/utils/constants/profile_strings.dart';
 
 class ProfileSettingsFormFields extends StatelessWidget {
   final TextEditingController nameController;
@@ -16,11 +17,11 @@ class ProfileSettingsFormFields extends StatelessWidget {
       children: [
         TextFormField(
           controller: nameController,
-          decoration: InputDecoration(hintText: 'Your name?'),
+          decoration: InputDecoration(hintText: ProfileStrings.nameHint),
         ),
         TextFormField(
           controller: aboutController,
-          decoration: InputDecoration(hintText: 'About yourself....'),
+          decoration: InputDecoration(hintText: ProfileStrings.aboutHint),
         ),
       ],
     );

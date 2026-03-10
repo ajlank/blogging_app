@@ -4,6 +4,7 @@ import 'package:blog_app/features/profile/presentation/widgets/profile_image_pic
 import 'package:blog_app/features/profile/presentation/widgets/profile_settings_form_fields.dart';
 import 'package:blog_app/features/profile/presentation/widgets/profile_settings_save_button.dart';
 import 'package:blog_app/core/utils/constants/app_routes.dart';
+import 'package:blog_app/core/utils/constants/profile_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -46,7 +47,10 @@ class _ProfileSettingsState extends State<ProfileSettings> {
       coverFile: coverFile,
       profileFile: profile,
     );
-    GetStorage().write('userConfirmed', FirebaseAuth.instance.currentUser!.uid);
+    GetStorage().write(
+      ProfileStrings.userConfirmedKey,
+      FirebaseAuth.instance.currentUser!.uid,
+    );
     Navigator.of(context).pushNamedAndRemoveUntil(profileRoute, (_) => false);
   }
 
@@ -57,7 +61,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
       body: Column(
         children: [
           ProfileImagePickerBox(
-            title: 'Cover:',
+            title: ProfileStrings.coverTitle,
             file: coverFile,
             onTap: () async {
               final image = await selectImage();
@@ -67,7 +71,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
             },
           ),
           ProfileImagePickerBox(
-            title: 'Profile',
+            title: ProfileStrings.profileTitle,
             file: profile,
             onTap: () async {
               final image = await selectImage();
