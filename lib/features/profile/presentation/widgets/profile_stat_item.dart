@@ -1,4 +1,5 @@
 import 'package:blog_app/base/styles/text_styles.dart';
+import 'package:blog_app/base/styles/profile_theme.dart';
 import 'package:flutter/material.dart';
 
 class ProfileStatItem extends StatelessWidget {
@@ -15,6 +16,8 @@ class ProfileStatItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileTheme = Theme.of(context).extension<ProfileTheme>()!;
+
     return Container(
       height: 70,
       width: 70,
@@ -22,7 +25,7 @@ class ProfileStatItem extends StatelessWidget {
         border: Border(
           right: BorderSide(
             width: 0.6,
-            color: const Color.fromARGB(255, 161, 159, 159),
+            color: profileTheme.profileStatDividerColor,
           ),
         ),
       ),
@@ -34,10 +37,7 @@ class ProfileStatItem extends StatelessWidget {
           SizedBox(height: 4),
           Text(
             label,
-            style: TextStyles.profileHeaderText.copyWith(
-              fontWeight: FontWeight.w400,
-              fontSize: 10,
-            ),
+            style: profileTheme.profileStatLabelTextStyle,
           ),
         ],
       ),

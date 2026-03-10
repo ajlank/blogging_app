@@ -1,4 +1,5 @@
 import 'package:blog_app/features/profile/presentation/widgets/profile_stat_item.dart';
+import 'package:blog_app/base/styles/profile_theme.dart';
 import 'package:flutter/material.dart';
 
 class ProfileStatsSection extends StatelessWidget {
@@ -17,10 +18,12 @@ class ProfileStatsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileTheme = Theme.of(context).extension<ProfileTheme>()!;
+
     return SliverToBoxAdapter(
       child: Container(
         height: 100,
-        color: Colors.white,
+        color: profileTheme.profileSectionBackgroundColor,
         child: Padding(
           padding: const EdgeInsets.only(left: 50, right: 50),
           child: Row(

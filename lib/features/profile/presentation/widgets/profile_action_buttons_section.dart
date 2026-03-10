@@ -1,4 +1,4 @@
-import 'package:blog_app/base/styles/text_styles.dart';
+import 'package:blog_app/base/styles/profile_theme.dart';
 import 'package:flutter/material.dart';
 
 class ProfileActionButtonsSection extends StatelessWidget {
@@ -13,10 +13,12 @@ class ProfileActionButtonsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileTheme = Theme.of(context).extension<ProfileTheme>()!;
+
     return SliverToBoxAdapter(
       child: Container(
         height: 60,
-        color: Colors.white,
+        color: profileTheme.profileSectionBackgroundColor,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -26,19 +28,20 @@ class ProfileActionButtonsSection extends StatelessWidget {
                 height: 40,
                 width: 130,
                 decoration: BoxDecoration(
-                  color: Colors.brown,
-                  borderRadius: BorderRadius.circular(16),
+                  color: profileTheme.profileActionButtonColor,
+                  borderRadius: profileTheme.profileActionButtonRadius,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
                       'Followers',
-                      style: TextStyles.profileButtonDesign.copyWith(
-                        fontSize: 15,
-                      ),
+                      style: profileTheme.profileActionButtonTextStyle,
                     ),
-                    Icon(Icons.people_alt_outlined, color: Colors.white),
+                    Icon(
+                      Icons.people_alt_outlined,
+                      color: profileTheme.profileActionIconColor,
+                    ),
                   ],
                 ),
               ),
@@ -49,8 +52,8 @@ class ProfileActionButtonsSection extends StatelessWidget {
                 height: 40,
                 width: 130,
                 decoration: BoxDecoration(
-                  color: Colors.brown,
-                  borderRadius: BorderRadius.circular(16),
+                  color: profileTheme.profileActionButtonColor,
+                  borderRadius: profileTheme.profileActionButtonRadius,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -58,12 +61,10 @@ class ProfileActionButtonsSection extends StatelessWidget {
                     SizedBox(width: 6),
                     Text(
                       'Messages',
-                      style: TextStyles.profileButtonDesign.copyWith(
-                        fontSize: 14,
-                      ),
+                      style: profileTheme.profileMessageButtonTextStyle,
                     ),
                     SizedBox(width: 5),
-                    Icon(Icons.chat, color: Colors.white),
+                    Icon(Icons.chat, color: profileTheme.profileActionIconColor),
                     Container(
                       margin: EdgeInsets.only(bottom: 25),
                       child: Badge(label: Text('1')),

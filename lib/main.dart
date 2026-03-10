@@ -3,6 +3,7 @@ import 'package:blog_app/base/styles/auth_theme.dart';
 import 'package:blog_app/base/styles/chat_theme.dart';
 import 'package:blog_app/base/styles/global_users_theme.dart';
 import 'package:blog_app/base/styles/home_theme.dart';
+import 'package:blog_app/base/styles/profile_theme.dart';
 import 'package:blog_app/features/posts/presentation/views/create_post_view.dart';
 import 'blogging.dart';
 
@@ -183,6 +184,31 @@ class MyApp extends StatelessWidget {
             homeActionButtonTextStyle: TextStyle(
               color: Colors.white,
               fontSize: 15,
+            ),
+          ),
+          ProfileTheme(
+            profileSectionBackgroundColor: Colors.white,
+            profileActionButtonColor: Colors.brown,
+            profileActionIconColor: Colors.white,
+            profileSettingsBorderColor: Color(0xFF8E8C8C),
+            profileStatDividerColor: Color(0xFFA19F9F),
+            profileActionButtonRadius: BorderRadius.all(Radius.circular(16)),
+            profileSettingsBorderRadius: BorderRadius.all(Radius.circular(15)),
+            profileMemberSinceTextStyle: TextStyle(
+              fontWeight: FontWeight.w300,
+              fontSize: 13,
+            ),
+            profileActionButtonTextStyle: TextStyle(
+              color: Colors.white,
+              fontSize: 15,
+            ),
+            profileMessageButtonTextStyle: TextStyle(
+              color: Colors.white,
+              fontSize: 14,
+            ),
+            profileStatLabelTextStyle: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 10,
             ),
           ),
         ],

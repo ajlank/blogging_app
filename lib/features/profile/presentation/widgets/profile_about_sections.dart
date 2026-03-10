@@ -1,4 +1,5 @@
 import 'package:blog_app/base/styles/text_styles.dart';
+import 'package:blog_app/base/styles/profile_theme.dart';
 import 'package:flutter/material.dart';
 
 class ProfileAboutHeaderSection extends StatelessWidget {
@@ -6,10 +7,12 @@ class ProfileAboutHeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileTheme = Theme.of(context).extension<ProfileTheme>()!;
+
     return SliverToBoxAdapter(
       child: Container(
         height: 60,
-        color: Colors.white,
+        color: profileTheme.profileSectionBackgroundColor,
         child: Padding(
           padding: const EdgeInsets.only(top: 35.0, left: 20),
           child: Row(children: [Text('About', style: TextStyles.aboutDesign)]),
@@ -26,10 +29,12 @@ class ProfileAboutBodySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileTheme = Theme.of(context).extension<ProfileTheme>()!;
+
     return SliverToBoxAdapter(
       child: Container(
         height: 500,
-        color: Colors.white,
+        color: profileTheme.profileSectionBackgroundColor,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Container(child: Text(about)),
