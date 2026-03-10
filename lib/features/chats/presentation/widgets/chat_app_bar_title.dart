@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:blog_app/core/utils/constants/chat_strings.dart';
 
 class ChatAppBarTitle extends StatelessWidget {
   final String userName;
@@ -12,7 +13,7 @@ class ChatAppBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('Chatting with', style: TextStyle(fontSize: 13)),
+        Text(ChatStrings.chattingWith, style: TextStyle(fontSize: 13)),
         SizedBox(width: 5),
         Text(
           userName,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:blog_app/core/utils/constants/chat_strings.dart';
 
 class ChatMessageInput extends StatelessWidget {
   final TextEditingController controller;
@@ -17,7 +18,7 @@ class ChatMessageInput extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         decoration: InputDecoration(
-          hintText: 'Write your message',
+          hintText: ChatStrings.writeYourMessage,
           border: const OutlineInputBorder(),
           suffixIcon: IconButton(
             onPressed: onSend,

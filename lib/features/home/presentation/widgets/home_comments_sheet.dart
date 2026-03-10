@@ -1,6 +1,7 @@
 import 'package:blog_app/controller/profile_settings_notifier.dart';
 import 'package:blog_app/features/home/presentation/controllers/home_notifier.dart';
 import 'package:blog_app/core/base/styles/home_theme.dart';
+import 'package:blog_app/core/utils/constants/home_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -52,7 +53,7 @@ void showHomeCommentsSheet(
                     totalComment: comments.length,
                   );
                   if (comments.isEmpty) {
-                    return const Center(child: Text("No comments yet."));
+                    return const Center(child: Text(HomeStrings.noCommentsYet));
                   }
 
                   return ListView.builder(
@@ -84,7 +85,7 @@ void showHomeCommentsSheet(
                     child: TextField(
                       controller: commentController,
                       decoration: const InputDecoration(
-                        hintText: "Add a comment...",
+                        hintText: HomeStrings.addCommentHint,
                         border: OutlineInputBorder(),
                       ),
                     ),

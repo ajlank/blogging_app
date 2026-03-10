@@ -1,5 +1,6 @@
 import 'package:blog_app/features/home/presentation/widgets/home_user_stat_item.dart';
 import 'package:blog_app/core/base/styles/home_theme.dart';
+import 'package:blog_app/core/utils/constants/home_strings.dart';
 import 'package:flutter/material.dart';
 
 class HomeUserStatsSection extends StatelessWidget {
@@ -47,12 +48,12 @@ class HomeUserStatsSection extends StatelessWidget {
                     }
                   },
                 ),
-                label: 'Total Posts',
+                label: HomeStrings.totalPosts,
               ),
               HomeUserStatItem(
                 icon: Icons.people,
                 value: Text(followCount.toString()),
-                label: 'Followers',
+                label: HomeStrings.followers,
               ),
               HomeUserStatItem(
                 icon: Icons.favorite,
@@ -72,7 +73,7 @@ class HomeUserStatsSection extends StatelessWidget {
                     }
                   },
                 ),
-                label: 'Reactions',
+                label: HomeStrings.reactions,
               ),
             ],
           ),

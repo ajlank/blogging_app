@@ -2,6 +2,7 @@ import 'package:blog_app/controller/home_user_profile_notifier.dart';
 import 'package:blog_app/controller/notification_notifier.dart';
 import 'package:blog_app/controller/profile_settings_notifier.dart';
 import 'package:blog_app/core/base/styles/home_theme.dart';
+import 'package:blog_app/core/utils/constants/home_strings.dart';
 import 'package:blog_app/features/chats/presentation/views/chat_view.dart';
 import 'package:blog_app/features/home/presentation/controllers/home_notifier.dart';
 import 'package:blog_app/features/home/presentation/widgets/home_user_about_sections.dart';
@@ -38,19 +39,19 @@ class HomeUserView extends StatelessWidget {
         stream: homeNotifier.watchProfileSettings(homeUserProfileNotifier.homeUserId),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Text('Loading..');
+            return Text(HomeStrings.loadingEllipsis);
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Please update your profile and navigate to this view"),
+                  Text(HomeStrings.updateProfilePrompt),
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed(profileSettingsRoute);
                     },
-                    child: const Text('Update profile'),
+                    child: const Text(HomeStrings.updateProfile),
                   ),
                 ],
               ),
@@ -78,7 +79,7 @@ class HomeUserView extends StatelessWidget {
                   profileImageUrl: profileData['profileImageUrl'],
                 ),
                 HomeUserMemberInfoSection(
-                  name: profileData['name'] ?? 'Your name',
+                  name: profileData['name'] ?? HomeStrings.yourNameFallback,
                 ),
                 HomeUserStatsSection(
                   userId: profileData['userId'],
@@ -97,7 +98,7 @@ class HomeUserView extends StatelessWidget {
                     );
                     showSnckBar(
                       context,
-                      "Successfully unfollowed ${profileData['name']}",
+                      HomeStrings.unfollowedUser(profileData['name']),
                     );
                   },
                   onFollowTap: () async {
@@ -120,7 +121,7 @@ class HomeUserView extends StatelessWidget {
 
                       showSnckBar(
                         context,
-                        "You are now following ${profileData['name']}",
+                        HomeStrings.nowFollowing(profileData['name']),
                       );
                     } catch (e) {
                       print(e.toString());
@@ -157,7 +158,7 @@ class HomeUserView extends StatelessWidget {
               ],
             );
           }
-          return Text('Loading');
+          return Text(HomeStrings.loading);
         },
       ),
     );

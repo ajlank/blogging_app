@@ -1,4 +1,5 @@
 import 'package:blog_app/features/global_users/presentation/widgets/follower_list_tile.dart';
+import 'package:blog_app/core/utils/constants/chat_strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class FollowersList extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Center(child: Text('No followers yet'));
+          return const Center(child: Text(ChatStrings.noFollowersYet));
         }
         if (snapshot.hasData) {
           final docs = snapshot.data!.docs;

@@ -1,4 +1,5 @@
 import 'package:blog_app/core/base/styles/home_theme.dart';
+import 'package:blog_app/core/utils/constants/home_strings.dart';
 import 'package:flutter/material.dart';
 
 class HomeUserActionButtonsSection extends StatelessWidget {
@@ -44,7 +45,7 @@ class HomeUserActionButtonsSection extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            'Following',
+                            HomeStrings.following,
                             style: homeTheme.homeActionButtonTextStyle,
                           ),
                           Icon(
@@ -69,7 +70,7 @@ class HomeUserActionButtonsSection extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            'Follow',
+                            HomeStrings.follow,
                             style: homeTheme.homeActionButtonTextStyle,
                           ),
                           Icon(Icons.add, color: homeTheme.homeUserActionIconColor),
@@ -92,7 +93,7 @@ class HomeUserActionButtonsSection extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            'Chat',
+                            HomeStrings.chat,
                             style: homeTheme.homeActionButtonTextStyle,
                           ),
                           Icon(

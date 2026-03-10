@@ -4,6 +4,7 @@ import 'package:blog_app/controller/notification_notifier.dart';
 import 'package:blog_app/controller/post_comment_notifier.dart';
 import 'package:blog_app/controller/profile_settings_notifier.dart';
 import 'package:blog_app/core/base/styles/home_theme.dart';
+import 'package:blog_app/core/utils/constants/home_strings.dart';
 import 'package:blog_app/features/home/presentation/controllers/home_notifier.dart';
 import 'package:blog_app/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:blog_app/features/home/presentation/widgets/home_comments_sheet.dart';
@@ -23,7 +24,7 @@ class HomeView extends HookWidget {
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser == null) {
       return const Scaffold(
-        body: Center(child: Text('Please login again')),
+        body: Center(child: Text(HomeStrings.pleaseLoginAgain)),
       );
     }
 
@@ -91,7 +92,7 @@ class HomeView extends HookWidget {
         stream: postsStream,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: Text('Loading'));
+            return Center(child: Text(HomeStrings.loading));
           }
           if (snapshot.hasData) {
             final docs = snapshot.data!.docs;
@@ -119,7 +120,7 @@ class HomeView extends HookWidget {
                   },
                   onDelete: () async {
                     await homeNotifier.deletePost(postData['documentId']);
-                    showSnckBarr(context, 'post deleted');
+                    showSnckBarr(context, HomeStrings.postDeleted);
                   },
                   onUpdate: () {
                     context.read<HomePostNotifier>().setUserName(
@@ -186,7 +187,7 @@ class HomeView extends HookWidget {
               },
             );
           }
-          return Center(child: Text('Loading'));
+          return Center(child: Text(HomeStrings.loading));
         },
       ),
     );

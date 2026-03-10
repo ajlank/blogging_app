@@ -1,5 +1,6 @@
 import 'package:blog_app/core/base/styles/text_styles.dart';
 import 'package:blog_app/core/base/styles/home_theme.dart';
+import 'package:blog_app/core/utils/constants/home_strings.dart';
 import 'package:flutter/material.dart';
 
 class HomeUserAboutHeaderSection extends StatelessWidget {
@@ -16,7 +17,7 @@ class HomeUserAboutHeaderSection extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(top: 35.0, left: 20),
           child: Row(
-            children: [Text('About', style: TextStyles.aboutDesign)],
+            children: [Text(HomeStrings.about, style: TextStyles.aboutDesign)],
           ),
         ),
       ),

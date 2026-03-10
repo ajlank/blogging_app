@@ -32,7 +32,7 @@ class GlobalChatMessageItem extends StatelessWidget {
                       ),
                 SizedBox(width: 10),
                 isMe
-                    ? Text('')
+                    ? SizedBox.shrink()
                     : Text(
                         senderName,
                         style: TextStyle(fontWeight: FontWeight.w500),

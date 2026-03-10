@@ -1,5 +1,6 @@
 import 'package:blog_app/core/base/styles/text_styles.dart';
 import 'package:blog_app/core/base/styles/home_theme.dart';
+import 'package:blog_app/core/utils/constants/home_strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +67,7 @@ class HomePostItem extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Posted on ${DateFormat('MMMM d, y - hh:mm a').format((postData['postedAt'] as Timestamp).toDate())}',
+                    '${HomeStrings.postedOnPrefix} ${DateFormat('MMMM d, y - hh:mm a').format((postData['postedAt'] as Timestamp).toDate())}',
                     style: homeTheme.homePostTimestampTextStyle,
                   ),
                 ],
@@ -86,12 +87,12 @@ class HomePostItem extends StatelessWidget {
                           PopupMenuItem<HomePostMenuAction>(
                             height: 2.1,
                             value: HomePostMenuAction.delete,
-                            child: Text('delete'),
+                            child: Text(HomeStrings.delete),
                           ),
                           PopupMenuItem<HomePostMenuAction>(
                             height: 2.1,
                             value: HomePostMenuAction.update,
-                            child: Text('update'),
+                            child: Text(HomeStrings.update),
                           ),
                         ];
                       },
@@ -144,4 +145,3 @@ class HomePostItem extends StatelessWidget {
     );
   }
 }
-

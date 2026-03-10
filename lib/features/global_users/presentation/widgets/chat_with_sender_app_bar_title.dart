@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:blog_app/core/base/styles/global_users_theme.dart';
+import 'package:blog_app/core/utils/constants/chat_strings.dart';
 
 class ChatWithSenderAppBarTitle extends StatelessWidget {
   final String senderName;
@@ -16,7 +17,7 @@ class ChatWithSenderAppBarTitle extends StatelessWidget {
     return Row(
       children: [
         Text(
-          'Chatting with',
+          ChatStrings.chattingWith,
           style: globalUsersTheme.chatWithSenderLabelTextStyle,
         ),
         SizedBox(width: 5),

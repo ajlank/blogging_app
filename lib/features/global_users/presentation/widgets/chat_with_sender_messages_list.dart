@@ -1,4 +1,5 @@
 import 'package:blog_app/features/global_users/presentation/widgets/chat_with_sender_message_tile.dart';
+import 'package:blog_app/core/utils/constants/chat_strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class ChatWithSenderMessagesList extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return Text('No data');
+          return Text(ChatStrings.noData);
         }
         if (snapshot.hasData) {
           final docs = snapshot.data!.docs;

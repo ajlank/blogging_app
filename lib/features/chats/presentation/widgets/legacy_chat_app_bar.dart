@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:blog_app/core/utils/constants/chat_strings.dart';
 
 class LegacyChatAppBar extends StatelessWidget implements PreferredSizeWidget {
   const LegacyChatAppBar({super.key});
@@ -11,11 +12,11 @@ class LegacyChatAppBar extends StatelessWidget implements PreferredSizeWidget {
           CircleAvatar(
             radius: 22,
             backgroundImage: NetworkImage(
-              'https://user-images.githubusercontent.com/89972827/208123817-524df66c-fcc6-4a29-8c27-cdeb3c989e41.png',
+              ChatStrings.legacyChatAvatarUrl,
             ),
           ),
           SizedBox(width: 10),
-          Text('Chat'),
+          Text(ChatStrings.legacyChatTitle),
         ],
       ),
       actions: [

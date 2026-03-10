@@ -1,4 +1,5 @@
 import 'package:blog_app/core/base/styles/text_styles.dart';
+import 'package:blog_app/core/utils/constants/notification_strings.dart';
 import 'package:flutter/material.dart';
 
 class UserPostCommentNotificationTile extends StatelessWidget {
@@ -29,7 +30,7 @@ class UserPostCommentNotificationTile extends StatelessWidget {
                   Text(senderName, style: TextStyles.userTitle),
                   SizedBox(width: 7),
                   Text(
-                    'Reacted on your post',
+                    NotificationStrings.reactedOnYourPost,
                     style: TextStyle(fontSize: 13),
                   ),
                 ],

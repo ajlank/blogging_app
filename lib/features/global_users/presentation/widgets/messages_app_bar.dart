@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:blog_app/core/utils/constants/chat_strings.dart';
 
 class MessagesAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MessagesAppBar({super.key});
@@ -8,6 +9,6 @@ class MessagesAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(title: Text('All messages'), centerTitle: true);
+    return AppBar(title: Text(ChatStrings.allMessages), centerTitle: true);
   }
 }

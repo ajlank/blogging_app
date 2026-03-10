@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:blog_app/core/utils/constants/chat_strings.dart';
 
 class FollowersAppBar extends StatelessWidget implements PreferredSizeWidget {
   const FollowersAppBar({super.key});
@@ -8,6 +9,6 @@ class FollowersAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(title: Text('All followers'), centerTitle: true);
+    return AppBar(title: Text(ChatStrings.allFollowers), centerTitle: true);
   }
 }

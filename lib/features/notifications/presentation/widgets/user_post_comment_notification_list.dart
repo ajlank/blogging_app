@@ -1,4 +1,5 @@
 import 'package:blog_app/features/notifications/presentation/widgets/user_post_comment_notification_tile.dart';
+import 'package:blog_app/core/utils/constants/notification_strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,7 @@ class UserPostCommentNotificationList extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         }
         if (snapshot.data == null || snapshot.data!.docs.isEmpty) {
-          return Center(child: Text('No Notifications'));
+          return Center(child: Text(NotificationStrings.noNotifications));
         }
         if (snapshot.hasData) {
           final doc = snapshot.data!.docs;

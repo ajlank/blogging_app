@@ -1,5 +1,6 @@
 import 'package:blog_app/core/base/styles/text_styles.dart';
 import 'package:blog_app/core/base/styles/home_theme.dart';
+import 'package:blog_app/core/utils/constants/home_strings.dart';
 import 'package:flutter/material.dart';
 
 class HomeUserMemberInfoSection extends StatelessWidget {
@@ -25,7 +26,7 @@ class HomeUserMemberInfoSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Member since Dec 2024',
+                  HomeStrings.memberSince,
                   style: homeTheme.homeMemberSinceTextStyle,
                 ),
               ],

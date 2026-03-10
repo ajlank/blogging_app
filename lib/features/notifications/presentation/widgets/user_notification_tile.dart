@@ -1,4 +1,5 @@
 import 'package:blog_app/core/base/styles/text_styles.dart';
+import 'package:blog_app/core/utils/constants/notification_strings.dart';
 import 'package:flutter/material.dart';
 
 class UserNotificationTile extends StatelessWidget {
@@ -24,7 +25,7 @@ class UserNotificationTile extends StatelessWidget {
           children: [
             Text(senderName, style: TextStyles.userTitle),
             SizedBox(width: 8),
-            Text('is following you'),
+            Text(NotificationStrings.isFollowingYou),
           ],
         ),
       ),

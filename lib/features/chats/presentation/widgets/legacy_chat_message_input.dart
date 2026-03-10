@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:blog_app/core/utils/constants/chat_strings.dart';
 
 class LegacyChatMessageInput extends StatelessWidget {
   const LegacyChatMessageInput({
@@ -32,7 +33,7 @@ class LegacyChatMessageInput extends StatelessWidget {
                     vertical: 10.0,
                     horizontal: 20.0,
                   ),
-                  hintText: 'Message',
+                  hintText: ChatStrings.legacyMessageHint,
                   hintStyle: TextStyle(color: Colors.white),
                   border: InputBorder.none,
                 ),

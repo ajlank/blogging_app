@@ -1,4 +1,5 @@
 import 'package:blog_app/core/base/styles/text_styles.dart';
+import 'package:blog_app/core/utils/constants/notification_strings.dart';
 import 'package:flutter/material.dart';
 
 class UserNotificationAppBar extends StatelessWidget
@@ -12,7 +13,7 @@ class UserNotificationAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(
-        'Notifications',
+        NotificationStrings.notificationsTitle,
         style: TextStyles.profileHeaderText.copyWith(fontSize: 25),
       ),
     );

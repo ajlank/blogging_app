@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:blog_app/core/utils/constants/chat_strings.dart';
 
 class GlobalChatAppBarTitle extends StatelessWidget {
   const GlobalChatAppBarTitle({super.key});
@@ -7,7 +8,7 @@ class GlobalChatAppBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('Global chatroom', style: TextStyle(fontSize: 13)),
+        Text(ChatStrings.globalChatroom, style: TextStyle(fontSize: 13)),
         SizedBox(width: 5),
       ],
     );

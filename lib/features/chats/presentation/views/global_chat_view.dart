@@ -3,6 +3,7 @@ import 'package:blog_app/features/chats/presentation/controllers/chats_notifier.
 import 'package:blog_app/features/chats/presentation/widgets/chat_message_input.dart';
 import 'package:blog_app/features/chats/presentation/widgets/global_chat_app_bar_title.dart';
 import 'package:blog_app/features/chats/presentation/widgets/global_chat_messages_list.dart';
+import 'package:blog_app/core/utils/constants/chat_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +29,7 @@ class GlobalChatView extends StatelessWidget {
       );
       _message.clear();
     } else {
-      print('Please enter some text');
+      print(ChatStrings.pleaseEnterSomeText);
     }
   }
 
