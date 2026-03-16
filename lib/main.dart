@@ -1,4 +1,3 @@
-
 import 'package:blog_app/core/base/styles/auth_theme.dart';
 import 'package:blog_app/core/base/styles/chat_theme.dart';
 import 'package:blog_app/core/base/styles/global_users_theme.dart';
