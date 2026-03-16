@@ -1,5 +1,5 @@
-import 'package:blog_app/core/base/styles/text_styles.dart';
-import 'package:blog_app/core/base/styles/profile_theme.dart';
+import 'package:blog_app/core/styles/app_theme.dart';
+import 'package:blog_app/core/styles/styles.dart';
 import 'package:flutter/material.dart';
 
 class ProfileMemberInfoSection extends StatelessWidget {
@@ -9,7 +9,7 @@ class ProfileMemberInfoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final profileTheme = Theme.of(context).extension<ProfileTheme>()!;
+    final profileTheme = Theme.of(context).extension<AppTheme>()!;
 
     return SliverToBoxAdapter(
       child: Container(
@@ -37,3 +37,6 @@ class ProfileMemberInfoSection extends StatelessWidget {
     );
   }
 }
+
+
+

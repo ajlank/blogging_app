@@ -1,5 +1,4 @@
-import 'package:blog_app/core/base/styles/text_styles.dart';
-import 'package:blog_app/core/base/styles/home_theme.dart';
+import 'package:blog_app/core/styles/app_theme.dart';
 import 'package:blog_app/core/utils/constants/home_strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
@@ -32,7 +31,7 @@ class HomePostItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeTheme = Theme.of(context).extension<HomeTheme>()!;
+    final homeTheme = Theme.of(context).extension<AppTheme>()!;
     final isOwner = postData['userId'] == currentUserId;
     final isLikedByCurrentUser = ((postData['likedBy'] ?? []) as List<dynamic>)
         .contains(currentUserId);
@@ -145,3 +144,6 @@ class HomePostItem extends StatelessWidget {
     );
   }
 }
+
+
+

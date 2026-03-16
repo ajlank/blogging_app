@@ -1,5 +1,5 @@
-import 'package:blog_app/core/base/styles/text_styles.dart';
-import 'package:blog_app/core/base/styles/auth_theme.dart';
+import 'package:blog_app/core/styles/app_theme.dart';
+import 'package:blog_app/core/styles/styles.dart';
 import 'package:blog_app/features/auth/presentation/controllers/auth_notifier.dart';
 import 'package:blog_app/features/auth/presentation/notifiers/auth_error_notifier.dart';
 import 'package:blog_app/core/utils/constants/auth_strings.dart';
@@ -37,7 +37,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
-    final authTheme = theme.extension<AuthTheme>()!;
+    final authTheme = theme.extension<AppTheme>()!;
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
@@ -140,3 +140,6 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 }
+
+
+

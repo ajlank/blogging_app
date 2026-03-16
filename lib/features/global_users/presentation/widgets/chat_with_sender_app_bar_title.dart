@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:blog_app/core/base/styles/global_users_theme.dart';
+import 'package:blog_app/core/styles/app_theme.dart';
 import 'package:blog_app/core/utils/constants/chat_strings.dart';
 
 class ChatWithSenderAppBarTitle extends StatelessWidget {
@@ -12,7 +12,7 @@ class ChatWithSenderAppBarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final globalUsersTheme = Theme.of(context).extension<GlobalUsersTheme>()!;
+    final globalUsersTheme = Theme.of(context).extension<AppTheme>()!;
 
     return Row(
       children: [
@@ -29,3 +29,6 @@ class ChatWithSenderAppBarTitle extends StatelessWidget {
     );
   }
 }
+
+
+

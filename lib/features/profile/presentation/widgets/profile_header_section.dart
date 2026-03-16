@@ -1,5 +1,5 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:blog_app/core/base/styles/profile_theme.dart';
+import 'package:blog_app/core/styles/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class ProfileHeaderSection extends StatelessWidget {
@@ -18,7 +18,7 @@ class ProfileHeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final profileTheme = Theme.of(context).extension<ProfileTheme>()!;
+    final profileTheme = Theme.of(context).extension<AppTheme>()!;
 
     return SliverToBoxAdapter(
       child: Container(
@@ -67,3 +67,6 @@ class ProfileHeaderSection extends StatelessWidget {
     );
   }
 }
+
+
+

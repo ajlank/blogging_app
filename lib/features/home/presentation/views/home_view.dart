@@ -1,9 +1,9 @@
-import 'package:blog_app/controller/home_post_notifier.dart';
-import 'package:blog_app/controller/home_user_profile_notifier.dart';
-import 'package:blog_app/controller/notification_notifier.dart';
-import 'package:blog_app/controller/post_comment_notifier.dart';
-import 'package:blog_app/controller/profile_settings_notifier.dart';
-import 'package:blog_app/core/base/styles/home_theme.dart';
+import 'package:blog_app/core/styles/app_theme.dart';
+import 'package:blog_app/features/home/presentation/controllers/home_post_notifier.dart';
+import 'package:blog_app/features/home/presentation/controllers/home_user_profile_notifier.dart';
+import 'package:blog_app/features/notifications/presentation/controllers/notification_notifier.dart';
+import 'package:blog_app/features/posts/presentation/controllers/post_comment_notifier.dart';
+import 'package:blog_app/features/profile/presentation/controllers/profile_settings_notifier.dart';
 import 'package:blog_app/core/utils/constants/home_strings.dart';
 import 'package:blog_app/features/home/presentation/controllers/home_notifier.dart';
 import 'package:blog_app/features/home/presentation/widgets/home_app_bar.dart';
@@ -20,7 +20,7 @@ class HomeView extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeTheme = Theme.of(context).extension<HomeTheme>()!;
+    final appTheme = Theme.of(context).extension<AppTheme>()!;
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser == null) {
       return const Scaffold(
@@ -63,7 +63,7 @@ class HomeView extends HookWidget {
     final globalChatCount = globalChatResult.data?.docs.length ?? 0;
 
     return Scaffold(
-      backgroundColor: homeTheme.homeScaffoldBackgroundColor,
+      backgroundColor: appTheme.homeScaffoldBackgroundColor,
       appBar: HomeAppBar(
         globalChatCount: globalChatCount,
         postReactionCommentCount: postReactionCommentCount,
@@ -195,12 +195,13 @@ class HomeView extends HookWidget {
 }
 
 void showSnckBarr(BuildContext context, String text) {
-  final homeTheme = Theme.of(context).extension<HomeTheme>()!;
+final appTheme = Theme.of(context).extension<AppTheme>()!;
+
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(text),
       duration: const Duration(seconds: 3),
-      backgroundColor: homeTheme.homeSnackBarBackgroundColor,
+      backgroundColor: appTheme.homeSnackBarBackgroundColor,
       padding: EdgeInsets.all(14),
     ),
   );

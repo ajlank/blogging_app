@@ -1,5 +1,4 @@
-import 'package:blog_app/core/base/styles/text_styles.dart';
-import 'package:blog_app/core/base/styles/profile_theme.dart';
+import 'package:blog_app/core/styles/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class ProfileStatItem extends StatelessWidget {
@@ -16,7 +15,7 @@ class ProfileStatItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final profileTheme = Theme.of(context).extension<ProfileTheme>()!;
+    final profileTheme = Theme.of(context).extension<AppTheme>()!;
 
     return Container(
       height: 70,
@@ -44,3 +43,6 @@ class ProfileStatItem extends StatelessWidget {
     );
   }
 }
+
+
+

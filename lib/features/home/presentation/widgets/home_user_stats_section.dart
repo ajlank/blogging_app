@@ -1,5 +1,5 @@
 import 'package:blog_app/features/home/presentation/widgets/home_user_stat_item.dart';
-import 'package:blog_app/core/base/styles/home_theme.dart';
+import 'package:blog_app/core/styles/app_theme.dart';
 import 'package:blog_app/core/utils/constants/home_strings.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +19,7 @@ class HomeUserStatsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeTheme = Theme.of(context).extension<HomeTheme>()!;
+    final homeTheme = Theme.of(context).extension<AppTheme>()!;
 
     return SliverToBoxAdapter(
       child: Container(
@@ -82,3 +82,6 @@ class HomeUserStatsSection extends StatelessWidget {
     );
   }
 }
+
+
+

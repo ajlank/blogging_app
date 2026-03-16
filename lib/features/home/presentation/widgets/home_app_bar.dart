@@ -1,5 +1,5 @@
 import 'package:blog_app/features/home/presentation/widgets/home_app_bar_actions.dart';
-import 'package:blog_app/core/base/styles/home_theme.dart';
+import 'package:blog_app/core/styles/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -29,7 +29,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeTheme = Theme.of(context).extension<HomeTheme>()!;
+    final homeTheme = Theme.of(context).extension<AppTheme>()!;
 
     return AppBar(
       backgroundColor: homeTheme.homeAppBarBackgroundColor,
@@ -49,3 +49,6 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 }
+
+
+

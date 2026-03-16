@@ -1,6 +1,6 @@
-import 'package:blog_app/controller/profile_settings_notifier.dart';
+import 'package:blog_app/core/styles/app_theme.dart';
+import 'package:blog_app/features/profile/presentation/controllers/profile_settings_notifier.dart';
 import 'package:blog_app/features/home/presentation/controllers/home_notifier.dart';
-import 'package:blog_app/core/base/styles/home_theme.dart';
 import 'package:blog_app/core/utils/constants/home_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ void showHomeCommentsSheet(
 }) {
   final TextEditingController commentController = TextEditingController();
   final homeNotifier = context.read<HomeNotifier>();
-  final homeTheme = Theme.of(context).extension<HomeTheme>()!;
+  final homeTheme = Theme.of(context).extension<AppTheme>()!;
 
   showModalBottomSheet(
     context: context,

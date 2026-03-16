@@ -1,5 +1,5 @@
 import 'package:blog_app/core/utils/customs/custom_clipper.dart';
-import 'package:blog_app/core/base/styles/profile_theme.dart';
+import 'package:blog_app/core/styles/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class ProfileCoverSliverAppBar extends StatelessWidget {
@@ -9,7 +9,7 @@ class ProfileCoverSliverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final profileTheme = Theme.of(context).extension<ProfileTheme>()!;
+    final profileTheme = Theme.of(context).extension<AppTheme>()!;
 
     return SliverAppBar(
       backgroundColor: profileTheme.profileSectionBackgroundColor,
@@ -35,3 +35,6 @@ class ProfileCoverSliverAppBar extends StatelessWidget {
     );
   }
 }
+
+
+
