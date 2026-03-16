@@ -1,4 +1,4 @@
-import 'package:blog_app/controller/profile_settings_notifier.dart';
+import 'package:blog_app/features/profile/presentation/controllers/profile_settings_notifier.dart';
 import 'package:blog_app/features/chats/presentation/controllers/chats_notifier.dart';
 import 'package:blog_app/features/chats/presentation/widgets/chat_message_input.dart';
 import 'package:blog_app/features/chats/presentation/widgets/global_chat_app_bar_title.dart';

@@ -1,4 +1,4 @@
-import 'package:blog_app/controller/notification_notifier.dart';
+import 'package:blog_app/features/notifications/presentation/controllers/notification_notifier.dart';
 import 'package:blog_app/features/notifications/presentation/controllers/notifications_notifier.dart';
 import 'package:blog_app/features/notifications/presentation/widgets/user_notification_app_bar.dart';
 import 'package:blog_app/features/notifications/presentation/widgets/user_notification_list.dart';

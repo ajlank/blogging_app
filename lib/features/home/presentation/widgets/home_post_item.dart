@@ -1,4 +1,5 @@
 import 'package:blog_app/core/styles/app_theme.dart';
+import 'package:blog_app/core/styles/styles.dart';
 import 'package:blog_app/core/utils/constants/home_strings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';

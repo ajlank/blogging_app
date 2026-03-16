@@ -1,4 +1,4 @@
-import 'package:blog_app/controller/notification_notifier.dart';
+import 'package:blog_app/features/notifications/presentation/controllers/notification_notifier.dart';
 import 'package:blog_app/features/auth/domain/repositories/auth_repository.dart';
 import 'package:blog_app/features/auth/presentation/notifiers/auth_error_notifier.dart';
 import 'package:blog_app/core/generics/dialog.dart';

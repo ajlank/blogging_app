@@ -1,8 +1,8 @@
-export 'package:blog_app/controller/home_post_notifier.dart';
-export 'package:blog_app/controller/home_user_profile_notifier.dart';
-export 'package:blog_app/controller/notification_notifier.dart';
-export 'package:blog_app/controller/post_comment_notifier.dart';
-export 'package:blog_app/controller/profile_settings_notifier.dart';
+export 'package:blog_app/features/home/presentation/controllers/home_post_notifier.dart';
+export 'package:blog_app/features/home/presentation/controllers/home_user_profile_notifier.dart';
+export 'package:blog_app/features/notifications/presentation/controllers/notification_notifier.dart';
+export 'package:blog_app/features/posts/presentation/controllers/post_comment_notifier.dart';
+export 'package:blog_app/features/profile/presentation/controllers/profile_settings_notifier.dart';
 export 'package:blog_app/features/global_users/presentation/views/followers_view.dart';
 export 'package:blog_app/features/global_users/presentation/views/messages_view.dart';
 export 'package:blog_app/features/home/presentation/views/home_user_view.dart';

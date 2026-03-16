@@ -1,5 +1,5 @@
-import 'package:blog_app/controller/home_user_profile_notifier.dart';
-import 'package:blog_app/controller/notification_notifier.dart';
+import 'package:blog_app/features/home/presentation/controllers/home_user_profile_notifier.dart';
+import 'package:blog_app/features/notifications/presentation/controllers/notification_notifier.dart';
 import 'package:blog_app/features/global_users/presentation/controllers/global_users_notifier.dart';
 import 'package:blog_app/features/global_users/presentation/widgets/chat_with_sender_app_bar_title.dart';
 import 'package:blog_app/features/global_users/presentation/widgets/chat_with_sender_input_field.dart';

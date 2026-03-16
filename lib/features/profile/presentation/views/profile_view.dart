@@ -1,5 +1,5 @@
-import 'package:blog_app/controller/notification_notifier.dart';
-import 'package:blog_app/controller/profile_settings_notifier.dart';
+import 'package:blog_app/features/notifications/presentation/controllers/notification_notifier.dart';
+import 'package:blog_app/features/profile/presentation/controllers/profile_settings_notifier.dart';
 import 'package:blog_app/features/profile/presentation/controllers/profile_notifier.dart';
 import 'package:blog_app/features/profile/presentation/widgets/profile_about_sections.dart';
 import 'package:blog_app/features/profile/presentation/widgets/profile_action_buttons_section.dart';

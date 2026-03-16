@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:blog_app/controller/home_post_notifier.dart';
+import 'package:blog_app/features/home/presentation/controllers/home_post_notifier.dart';
 import 'package:blog_app/features/posts/presentation/controllers/posts_notifier.dart';
 import 'package:blog_app/features/posts/presentation/widgets/create_post_image_picker.dart';
 import 'package:blog_app/features/posts/presentation/widgets/create_post_text_field.dart';
