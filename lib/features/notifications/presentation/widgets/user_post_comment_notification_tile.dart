@@ -1,4 +1,4 @@
-import 'package:blog_app/core/styles/app_theme.dart';
+
 import 'package:blog_app/core/styles/styles.dart';
 import 'package:blog_app/core/utils/constants/notification_strings.dart';
 import 'package:flutter/material.dart';
