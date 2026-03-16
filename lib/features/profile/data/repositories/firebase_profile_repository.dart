@@ -111,7 +111,7 @@ class FirebaseProfileRepository implements ProfileRepository {
         "name": name.trim(),
         "profileImageUrl": profileImageUrl ?? "",
       });
-    } catch (e) {
+    } catch (_) {
 
     }
   }
