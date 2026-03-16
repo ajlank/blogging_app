@@ -51,11 +51,13 @@ class FirebaseAuthRepository implements AuthRepository {
         return false;
       }
     } catch (e) {
-      await showErrorDialog(
+      if(context.mounted){
+        await showErrorDialog(
         'Unknown error occured',
         e.toString(),
         context,
       );
+      }
       return false;
     }
   }

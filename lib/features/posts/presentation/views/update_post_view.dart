@@ -74,7 +74,7 @@ class _UpdatePostState extends State<UpdatePost> {
       Future.delayed(const Duration(seconds: 5), () {
         Navigator.of(context.mounted? context:context).pushNamedAndRemoveUntil(homeRoute, (_) => false);
       });
-    } catch (e) {
+    } catch (_) {
 
     }
   }

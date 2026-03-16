@@ -130,7 +130,7 @@ class HomeUserView extends StatelessWidget {
                         HomeStrings.nowFollowing(profileData['name']),
                       );
                      }
-                    } catch (e) {
+                    } catch (_) {
                       
                     }
                   },
