@@ -1,4 +1,4 @@
-import 'package:blog_app/core/styles/app_theme.dart';
+import 'package:blog_app/core/generics/show_snack_bar.dart';
 import 'package:blog_app/features/home/presentation/controllers/home_user_profile_notifier.dart';
 import 'package:blog_app/features/notifications/presentation/controllers/notification_notifier.dart';
 import 'package:blog_app/features/profile/presentation/controllers/profile_settings_notifier.dart';
@@ -97,7 +97,7 @@ class HomeUserView extends StatelessWidget {
                       profileDocId: docs.first.id,
                       currentUserId: currentUserId,
                     );
-                    showSnckBar(
+                    showAppSnackBar(
                       context,
                       HomeStrings.unfollowedUser(profileData['name']),
                     );
@@ -120,7 +120,7 @@ class HomeUserView extends StatelessWidget {
                             .notifSenderName,
                       );
 
-                      showSnckBar(
+                      showAppSnackBar(
                         context,
                         HomeStrings.nowFollowing(profileData['name']),
                       );
@@ -166,15 +166,4 @@ class HomeUserView extends StatelessWidget {
   }
 }
 
-void showSnckBar(BuildContext context, String text) {
-final appTheme = Theme.of(context).extension<AppTheme>()!;
 
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text(text),
-      duration: const Duration(seconds: 3),
-      backgroundColor: appTheme.homeSnackBarBackgroundColor,
-      padding: EdgeInsets.all(14),
-    ),
-  );
-}

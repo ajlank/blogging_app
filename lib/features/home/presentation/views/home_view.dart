@@ -1,3 +1,4 @@
+import 'package:blog_app/core/generics/show_snack_bar.dart';
 import 'package:blog_app/core/styles/app_theme.dart';
 import 'package:blog_app/features/home/presentation/controllers/home_post_notifier.dart';
 import 'package:blog_app/features/home/presentation/controllers/home_user_profile_notifier.dart';
@@ -120,7 +121,7 @@ class HomeView extends HookWidget {
                   },
                   onDelete: () async {
                     await homeNotifier.deletePost(postData['documentId']);
-                    showSnckBarr(context, HomeStrings.postDeleted);
+                    showAppSnackBar(context, HomeStrings.postDeleted);
                   },
                   onUpdate: () {
                     context.read<HomePostNotifier>().setUserName(
@@ -193,16 +194,4 @@ class HomeView extends HookWidget {
     );
   }
 }
-
-void showSnckBarr(BuildContext context, String text) {
-final appTheme = Theme.of(context).extension<AppTheme>()!;
-
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text(text),
-      duration: const Duration(seconds: 3),
-      backgroundColor: appTheme.homeSnackBarBackgroundColor,
-      padding: EdgeInsets.all(14),
-    ),
-  );
-}
+\n
