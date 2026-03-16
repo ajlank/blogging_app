@@ -39,7 +39,7 @@ class FirebasePostsRepository implements PostsRepository {
       final jsonData = jsonDecode(resData.body);
       return jsonData['secure_url'];
     } else {
-      print('Cloudinary upload failed: ${response.statusCode}');
+
       return null;
     }
   }

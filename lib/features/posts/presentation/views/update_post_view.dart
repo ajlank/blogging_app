@@ -5,10 +5,8 @@ import 'package:blog_app/features/posts/presentation/widgets/create_post_image_p
 import 'package:blog_app/features/posts/presentation/widgets/create_post_text_field.dart';
 import 'package:blog_app/features/posts/presentation/widgets/update_post_button.dart';
 import 'package:blog_app/core/utils/constants/app_routes.dart';
-import 'package:blog_app/core/utils/constants/post_strings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -59,7 +57,7 @@ class _UpdatePostState extends State<UpdatePost> {
       final userImageUrl = profile.userImgUrl;
 
       if (userName.isEmpty || userImageUrl.isEmpty) {
-        print(PostStrings.userDataNotLoaded);
+    
         return;
       }
 
@@ -74,20 +72,16 @@ class _UpdatePostState extends State<UpdatePost> {
       );
 
       Future.delayed(const Duration(seconds: 5), () {
-        Navigator.of(context).pushNamedAndRemoveUntil(homeRoute, (_) => false);
+        Navigator.of(context.mounted? context:context).pushNamedAndRemoveUntil(homeRoute, (_) => false);
       });
     } catch (e) {
-      print(e);
+
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    print(
-      GetStorage().read(
-        '${PostStrings.profileStorageKeyPrefix}${FirebaseAuth.instance.currentUser!.uid}',
-      ),
-    );
+   
     return Scaffold(
       appBar: AppBar(),
       body: Column(

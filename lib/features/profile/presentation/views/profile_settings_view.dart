@@ -51,7 +51,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
       ProfileStrings.userConfirmedKey,
       FirebaseAuth.instance.currentUser!.uid,
     );
-    Navigator.of(context).pushNamedAndRemoveUntil(profileRoute, (_) => false);
+    
+      Navigator.of(context.mounted?context:context).pushNamedAndRemoveUntil(profileRoute, (_) => false);
+    
   }
 
   @override

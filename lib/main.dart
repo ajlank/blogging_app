@@ -1,12 +1,20 @@
 import 'package:blog_app/core/styles/app_theme.dart';
 import 'package:blog_app/features/posts/presentation/views/create_post_view.dart';
+import 'package:cloudinary_flutter/cloudinary_object.dart';
 import 'blogging.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  CloudinaryContext.cloudinary = Cloudinary.fromCloudName(
+
+  // // ignore: deprecated_member_use
+  // CloudinaryContext.cloudinary = Cloudinary.fromCloudName(
+  //   cloudName: 'dyn1z1hjj',
+  // );
+  CloudinaryObject.fromCloudName(
     cloudName: 'dyn1z1hjj',
   );
+
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await GetStorage.init();
   runApp(

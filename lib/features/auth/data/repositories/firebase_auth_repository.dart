@@ -25,21 +25,29 @@ class FirebaseAuthRepository implements AuthRepository {
       );
 
       if (userCred.user != null) {
-        context.read<NotificationNotifier>().setNotifRecieverId(
+        if(context.mounted){
+          context.read<NotificationNotifier>().setNotifRecieverId(
           userCred.user!.uid,
         );
+        }
         return true;
       }
       return false;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        await showErrorDialog('Error', 'User not found', context);
+       if(context.mounted){
+         await showErrorDialog('Error', 'User not found', context);
+       }
         return false;
       } else if (e.code == 'wrong-password') {
-        context.read<AuthErrorNotifier>().setPasswordError('Wrong password');
+       if(context.mounted){
+          context.read<AuthErrorNotifier>().setPasswordError('Wrong password');
+       }
         return false;
       } else {
-        await showErrorDialog('Unknown error occurred', e.code, context);
+       if(context.mounted){
+         await showErrorDialog('Unknown error occurred', e.code, context);
+       }
         return false;
       }
     } catch (e) {
@@ -63,25 +71,39 @@ class FirebaseAuthRepository implements AuthRepository {
         email: email,
         password: pass,
       );
-      Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (_) => false);
+      if(context.mounted){
+       Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (_) => false);
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        context.read<AuthErrorNotifier>().setPasswordError(
-          'Password is too weak! at least 6 digits required',
+       if(context.mounted){
+         context.read<AuthErrorNotifier>().setPasswordError(
+          'Weak password! try another',
         );
+       }
       } else if (e.code == 'email-already-in-use') {
-        context.read<AuthErrorNotifier>().setEmailError(
+        if(context.mounted){
+          context.read<AuthErrorNotifier>().setEmailError(
+          
           'Email already exists! try another',
         );
+        }
       } else if (e.code == 'invalid-email') {
-        context.read<AuthErrorNotifier>().setEmailError(
+       if(context.mounted){
+         context.read<AuthErrorNotifier>().setEmailError(
           'Invalid email (correct: example@something.com)',
         );
+       }
       } else {
-        return await showErrorDialog('An error occurred', e.code, context);
+        if(context.mounted){
+          return await showErrorDialog('An error occurred', e.code, context);
+        }
+       
       }
     } catch (e) {
-      return await showErrorDialog('An error occured', e.toString(), context);
+     if(context.mounted){
+       return await showErrorDialog('An error occured', e.toString(), context);
+     }
     }
   }
 }

@@ -27,38 +27,36 @@ class ProfileHeaderSection extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              child: Row(
-                children: [
-                  IconButton(
-                    onPressed: onCreatePostTap,
-                    icon: Icon(FluentIcons.add_16_regular),
-                  ),
-                  IconButton(
-                    onPressed: onHomeTap,
-                    icon: Icon(FluentIcons.home_12_regular),
-                  ),
-                  GestureDetector(
-                    onTap: onSettingsTap,
-                    child: Container(
-                      padding: EdgeInsets.all(3),
-                      decoration: BoxDecoration(
-                        borderRadius: profileTheme.profileSettingsBorderRadius,
-                        border: Border.all(
-                          color: profileTheme.profileSettingsBorderColor,
-                        ),
+            Row(
+              children: [
+                IconButton(
+                  onPressed: onCreatePostTap,
+                  icon: Icon(FluentIcons.add_16_regular),
+                ),
+                IconButton(
+                  onPressed: onHomeTap,
+                  icon: Icon(FluentIcons.home_12_regular),
+                ),
+                GestureDetector(
+                  onTap: onSettingsTap,
+                  child: Container(
+                    padding: EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                      borderRadius: profileTheme.profileSettingsBorderRadius,
+                      border: Border.all(
+                        color: profileTheme.profileSettingsBorderColor,
                       ),
-                      child: Icon(Icons.settings),
                     ),
+                    child: Icon(Icons.settings),
                   ),
-                  SizedBox(width: 30),
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundImage: NetworkImage(profileImageUrl),
-                  ),
-                  SizedBox(width: 30),
-                ],
-              ),
+                ),
+                SizedBox(width: 30),
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage: NetworkImage(profileImageUrl),
+                ),
+                SizedBox(width: 30),
+              ],
             ),
             SizedBox(width: 50),
           ],

@@ -43,7 +43,7 @@ class HomeUserAboutBodySection extends StatelessWidget {
         color: homeTheme.homeSectionBackgroundColor,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Container(child: Text(about)),
+          child: Text(about),
         ),
       ),
     );

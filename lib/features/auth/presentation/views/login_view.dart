@@ -107,16 +107,18 @@ class _LoginViewState extends State<LoginView> {
                           context,
                         );
                       } finally {
-                        if (mounted) {
+                        if (context.mounted) {
                           Navigator.of(context).pop();
                         }
                       }
                       if (!mounted || !didLogin) {
                         return;
                       }
-                      Navigator.of(
+                      if(context.mounted){
+                        Navigator.of(
                         context,
                       ).pushNamedAndRemoveUntil(profileRoute, (_) => false);
+                      }
                     },
                     child: Text(
                       AuthStrings.loginTitle,

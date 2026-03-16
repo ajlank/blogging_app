@@ -44,9 +44,9 @@ class _ChatWithSenderViewState extends State<ChatWithSenderView> {
         recieverName: context.read<HomeUserProfileNotifier>().homeUserName,
         recieverMessage: _recieverMessageController.text,
       );
-    } catch (e) {
-      print(e.toString());
-    }
+      } catch (e) {
+       //a
+      }
   }
 
   @override
@@ -82,7 +82,9 @@ class _ChatWithSenderViewState extends State<ChatWithSenderView> {
                     : 'Write your message as sender',
             onSend: () async {
               await sendMessageHandler();
-              FocusScope.of(context).unfocus();
+            if(context.mounted){
+                FocusScope.of(context).unfocus();
+            }
               _recieverMessageController.clear();
               _messageController.clear();
             },

@@ -34,9 +34,7 @@ class ChatView extends StatelessWidget {
         message: _message.text,
       );
       _message.clear();
-    } else {
-      print(ChatStrings.pleaseEnterSomeText);
-    }
+    } 
   }
 
   @override

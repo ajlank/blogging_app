@@ -97,10 +97,12 @@ class HomeUserView extends StatelessWidget {
                       profileDocId: docs.first.id,
                       currentUserId: currentUserId,
                     );
-                    showAppSnackBar(
+                    if(context.mounted){
+                      showAppSnackBar(
                       context,
                       HomeStrings.unfollowedUser(profileData['name']),
                     );
+                    }
                   },
                   onFollowTap: () async {
                     await homeNotifier.addFollower(
@@ -109,7 +111,8 @@ class HomeUserView extends StatelessWidget {
                     );
 
                     try {
-                      await homeNotifier.addFollowingNotification(
+                      if(context.mounted){
+                        await homeNotifier.addFollowingNotification(
                         senderId: currentUserId,
                         receiverId: profileData['userId'],
                         senderImg: context
@@ -119,13 +122,16 @@ class HomeUserView extends StatelessWidget {
                             .read<NotificationNotifier>()
                             .notifSenderName,
                       );
+                      }
 
-                      showAppSnackBar(
+                     if(context.mounted){
+                       showAppSnackBar(
                         context,
                         HomeStrings.nowFollowing(profileData['name']),
                       );
+                     }
                     } catch (e) {
-                      print(e.toString());
+                      
                     }
                   },
                   onChatTap: () async {
@@ -137,12 +143,15 @@ class HomeUserView extends StatelessWidget {
                     final senderImgUrl = currentUser['profileImageUrl'];
 
                     final chatRoomId = getChatId(currentUserId, profileData['userId']);
-
+                  if(context.mounted){    
+                  
                     context.read<HomeUserProfileNotifier>().setRecieverImage(
                       profileData['profileImageUrl'],
                     );
+                  }
                     GetStorage().write(profileData['userId'], chatRoomId);
-                    Navigator.of(context).push(
+                    if(context.mounted){
+                      Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => ChatView(
                           chatRoomId: chatRoomId,
@@ -152,6 +161,7 @@ class HomeUserView extends StatelessWidget {
                         ),
                       ),
                     );
+                    }
                   },
                 ),
                 const HomeUserAboutHeaderSection(),

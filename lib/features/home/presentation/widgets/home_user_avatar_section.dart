@@ -20,15 +20,13 @@ class HomeUserAvatarSection extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundImage: NetworkImage(profileImageUrl),
-                  ),
-                ],
-              ),
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage: NetworkImage(profileImageUrl),
+                ),
+              ],
             ),
           ],
         ),

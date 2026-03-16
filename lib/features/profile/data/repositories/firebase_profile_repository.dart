@@ -73,7 +73,7 @@ class FirebaseProfileRepository implements ProfileRepository {
       final jsonData = jsonDecode(resData.body);
       return jsonData['secure_url'];
     } else {
-      print('Cloudinary upload failed: ${response.statusCode}');
+      
       return null;
     }
   }
@@ -112,7 +112,7 @@ class FirebaseProfileRepository implements ProfileRepository {
         "profileImageUrl": profileImageUrl ?? "",
       });
     } catch (e) {
-      print(e);
+
     }
   }
 
@@ -150,7 +150,7 @@ class FirebaseProfileRepository implements ProfileRepository {
         "userName": name.trim(),
       });
     } catch (e) {
-      print(e);
+
     }
   }
 }

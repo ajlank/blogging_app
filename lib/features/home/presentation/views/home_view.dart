@@ -83,10 +83,14 @@ class HomeView extends HookWidget {
         },
         onSignOutTap: () async {
           await homeNotifier.signOut();
-          context.read<ProfileSettingsNotifier>().clearUserDetails();
-          Navigator.of(
+          if(context.mounted){
+             context.read<ProfileSettingsNotifier>().clearUserDetails();
+          }
+          if(context.mounted){
+            Navigator.of(
             context,
           ).pushNamedAndRemoveUntil(loginRoute, (_) => false);
+          }
         },
       ),
       body: StreamBuilder(
@@ -121,7 +125,7 @@ class HomeView extends HookWidget {
                   },
                   onDelete: () async {
                     await homeNotifier.deletePost(postData['documentId']);
-                    showAppSnackBar(context, HomeStrings.postDeleted);
+                    if(context.mounted){showAppSnackBar(context, HomeStrings.postDeleted);}
                   },
                   onUpdate: () {
                     context.read<HomePostNotifier>().setUserName(
@@ -152,7 +156,8 @@ class HomeView extends HookWidget {
                         documentId: postData['documentId'],
                         userId: currentUserId,
                       );
-                      await homeNotifier.addPostReactionCommentNotification(
+                    if(context.mounted){
+                        await homeNotifier.addPostReactionCommentNotification(
                         senderId: currentUserId,
                         receiverId: postData['userId'],
                         senderImg:
@@ -160,6 +165,7 @@ class HomeView extends HookWidget {
                         senderName:
                             context.read<NotificationNotifier>().notifSenderName,
                       );
+                    }
                     }
                   },
                   onUnlike: () async {

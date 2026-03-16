@@ -53,11 +53,12 @@ class _CreatePostState extends State<CreatePost> {
       final userImageUrl = profile.profileImageUrl;
 
       if (userName.isEmpty || userImageUrl.isEmpty) {
-        print(PostStrings.userDataNotLoaded);
+      
         return;
       }
 
-      await context.read<PostsNotifier>().createPost(
+    if(context.mounted){
+        await context.read<PostsNotifier>().createPost(
         userId: FirebaseAuth.instance.currentUser!.uid,
         userName: userName,
         userImageUrl: userImageUrl,
@@ -66,10 +67,11 @@ class _CreatePostState extends State<CreatePost> {
       );
 
       Future.delayed(const Duration(seconds: 5), () {
-        Navigator.of(context).pushNamedAndRemoveUntil(homeRoute, (_) => false);
+        Navigator.of(context.mounted?context:context).pushNamedAndRemoveUntil(homeRoute, (_) => false);
       });
+    }
     } catch (e) {
-      print(e);
+     
     }
   }
 
