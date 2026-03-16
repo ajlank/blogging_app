@@ -194,4 +194,3 @@ class HomeView extends HookWidget {
     );
   }
 }
-\n
