@@ -1,0 +1,54 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    env:
+      GOOGLE_API_KEY_1: ${{ secrets.GOOGLE_API_KEY }}
+      GOOGLE_API_KEY_2: ${{ secrets.GOOGLE_API_KEYS }}
+      GOOGLE_API_KEY_3: ${{ secrets.GOOGLE_API_KEYM }}
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.0'
+
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-cache-${{ hashFiles('pubspec.lock') }}
+          restore-keys: |
+            pub-cache-
+
+      - name: Install dependencies
+        run: flutter pub get
+      
+      - name: Analyze code
+        run: flutter analyze
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Build APK
+        run: |
+          flutter build apk --release \
+            --dart-define=GOOGLE_API_KEY_1=$GOOGLE_API_KEY_1 \
+            --dart-define=GOOGLE_API_KEY_2=$GOOGLE_API_KEY_2 \
+            --dart-define=GOOGLE_API_KEY_3=$GOOGLE_API_KEY_3
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
