@@ -42,10 +42,7 @@ jobs:
 
       - name: Build APK
         run: |
-          flutter build apk --release \
-            --dart-define=GOOGLE_API_KEY_1=$GOOGLE_API_KEY_1 \
-            --dart-define=GOOGLE_API_KEY_2=$GOOGLE_API_KEY_2 \
-            --dart-define=GOOGLE_API_KEY_3=$GOOGLE_API_KEY_3
+          flutter build apk --release
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
