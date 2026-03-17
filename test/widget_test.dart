@@ -1,33 +1,43 @@
-import 'package:blog_app/blogging.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
 import 'package:blog_app/main.dart';
 
+class MockFirebaseCore extends FirebasePlatform {
+  @override
+  Future<FirebaseAppPlatform> initializeApp({
+    String? name,
+    FirebaseOptions? options,
+  }) async {
+    return FirebaseAppPlatform(
+      name ?? '[DEFAULT]',
+      options ??
+          const FirebaseOptions(
+            apiKey: 'fake',
+            appId: 'fake',
+            messagingSenderId: 'fake',
+            projectId: 'fake',
+          ),
+    );
+  }
+}
+
 void main() {
-  setUpAll(() async {
+  setUpAll(() {
     TestWidgetsFlutterBinding.ensureInitialized();
 
-    // Use fake options for CI/CD tests
-    await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: 'fake_key',
-        appId: 'fake_appId',
-        messagingSenderId: 'fake_senderId',
-        projectId: 'fake_projectId',
-      ),
-    );
+    // 🔥 THIS LINE IS THE FIX
+    FirebasePlatform.instance = MockFirebaseCore();
   });
 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
 
-    // Verify initial counter
     expect(find.text('0'), findsOneWidget);
 
-    // Tap + and rebuild
     await tester.tap(find.byIcon(Icons.add));
     await tester.pump();
 
-    // Verify increment
     expect(find.text('1'), findsOneWidget);
   });
 }
