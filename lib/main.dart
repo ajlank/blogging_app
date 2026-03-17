@@ -1,6 +1,7 @@
 import 'package:blog_app/core/styles/app_theme.dart';
 import 'package:blog_app/features/posts/presentation/views/create_post_view.dart';
 import 'package:cloudinary_flutter/cloudinary_object.dart';
+import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'blogging.dart';
 
 void main() async {
@@ -108,13 +109,13 @@ void main() async {
               AuthNotifier(loginUseCase, signUpUseCase),
         ),
       ],
-      child: MyApp(),
+      child: MyApp(firebaseAuth: null,),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required MockFirebaseAuth firebaseAuth});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
