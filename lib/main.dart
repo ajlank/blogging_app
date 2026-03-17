@@ -3,7 +3,7 @@ import 'package:blog_app/features/posts/presentation/views/create_post_view.dart
 import 'package:cloudinary_flutter/cloudinary_object.dart';
 import 'blogging.dart';
 
-void main() async {
+void main({AuthRepository? authRepository}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // // ignore: deprecated_member_use
@@ -14,7 +14,9 @@ void main() async {
     cloudName: 'dyn1z1hjj',
   );
 
-
+ if (authRepository == null) {
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  }
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await GetStorage.init();
   runApp(
@@ -92,8 +94,9 @@ void main() async {
           update: (context, homeUseCases, previous) =>
               HomeNotifier(homeUseCases),
         ),
-        Provider<AuthRepository>(
-          create: (context) => FirebaseAuthRepository(FirebaseAuth.instance),
+         Provider<AuthRepository>(
+          create: (_) =>
+              authRepository ?? FirebaseAuthRepository(FirebaseAuth.instance),
         ),
         ProxyProvider<AuthRepository, LoginUserUseCase>(
           update: (context, authRepository, previous) =>
