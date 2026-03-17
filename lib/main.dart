@@ -1,10 +1,12 @@
 import 'package:blog_app/core/styles/app_theme.dart';
 import 'package:blog_app/features/posts/presentation/views/create_post_view.dart';
 import 'package:cloudinary_flutter/cloudinary_object.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'blogging.dart';
 
-void main({AuthRepository? authRepository}) async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
 
   // // ignore: deprecated_member_use
   // CloudinaryContext.cloudinary = Cloudinary.fromCloudName(
@@ -14,9 +16,7 @@ void main({AuthRepository? authRepository}) async {
     cloudName: 'dyn1z1hjj',
   );
 
- if (authRepository == null) {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  }
+print(dotenv.env); // should print all your keys
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await GetStorage.init();
   runApp(
@@ -94,9 +94,8 @@ void main({AuthRepository? authRepository}) async {
           update: (context, homeUseCases, previous) =>
               HomeNotifier(homeUseCases),
         ),
-         Provider<AuthRepository>(
-          create: (_) =>
-              authRepository ?? FirebaseAuthRepository(FirebaseAuth.instance),
+        Provider<AuthRepository>(
+          create: (context) => FirebaseAuthRepository(FirebaseAuth.instance),
         ),
         ProxyProvider<AuthRepository, LoginUserUseCase>(
           update: (context, authRepository, previous) =>
