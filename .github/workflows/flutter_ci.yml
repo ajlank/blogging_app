@@ -38,7 +38,11 @@ jobs:
         run: flutter analyze
 
       - name: Run tests
-        run: flutter test
+        run: |
+          flutter test \
+            --dart-define=GOOGLE_API_KEY_1=$GOOGLE_API_KEY_1 \
+            --dart-define=GOOGLE_API_KEY_2=$GOOGLE_API_KEY_2 \
+            --dart-define=GOOGLE_API_KEY_3=$GOOGLE_API_KEY_3
 
       - name: Build APK
         run: |
