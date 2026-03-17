@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
@@ -35,9 +36,13 @@ class MockFirebaseCore extends FirebasePlatform {
   }
 }
 void main() {
-  setUpAll(() {
-     TestWidgetsFlutterBinding.ensureInitialized();
-     FirebasePlatform.instance = MockFirebaseCore();
+  setUpAll(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+
+    FirebasePlatform.instance = MockFirebaseCore();
+
+    // 🔥 THIS IS THE MISSING LINE
+    await Firebase.initializeApp();
   });
 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
