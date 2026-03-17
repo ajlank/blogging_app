@@ -4,12 +4,14 @@ import 'package:firebase_core_platform_interface/firebase_core_platform_interfac
 import 'package:blog_app/main.dart';
 
 class MockFirebaseCore extends FirebasePlatform {
+  final Map<String, FirebaseAppPlatform> _apps = {};
+
   @override
   Future<FirebaseAppPlatform> initializeApp({
     String? name,
     FirebaseOptions? options,
   }) async {
-    return FirebaseAppPlatform(
+    final app = FirebaseAppPlatform(
       name ?? '[DEFAULT]',
       options ??
           const FirebaseOptions(
@@ -19,15 +21,23 @@ class MockFirebaseCore extends FirebasePlatform {
             projectId: 'fake',
           ),
     );
+
+    _apps[app.name] = app;
+    return app;
+  }
+
+  @override
+  FirebaseAppPlatform app([String name = defaultFirebaseAppName]) {
+    if (_apps.containsKey(name)) {
+      return _apps[name]!;
+    }
+    throw UnimplementedError('app() has not been implemented.');
   }
 }
-
 void main() {
   setUpAll(() {
-    TestWidgetsFlutterBinding.ensureInitialized();
-
-    // 🔥 THIS LINE IS THE FIX
-    FirebasePlatform.instance = MockFirebaseCore();
+     TestWidgetsFlutterBinding.ensureInitialized();
+     FirebasePlatform.instance = MockFirebaseCore();
   });
 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
