@@ -16,7 +16,6 @@ void main() async {
     cloudName: 'dyn1z1hjj',
   );
 
-print(dotenv.env); // should print all your keys
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await GetStorage.init();
   runApp(
